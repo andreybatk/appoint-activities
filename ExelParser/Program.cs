@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,16 @@ namespace ExelParser
     class Program
     {
         private static readonly string _file = "Test.xlsx";
-        private static readonly int[] _requiredColumns = { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
         private static readonly int _numberRowsForProgress = 100;
+        private static Dictionary<string, int> _foundColumns;
+ 
+        private static List<string> _requiredColumns = new List<string> {"ETA", "TOTA" };
+        //private static List<int> _currentNumbersColumns = new List<int> { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
+
         static void Main(string[] args)
         {
             Console.WriteLine($"Работа с файлом {_file}");
-            Console.WriteLine("Чтобы запустить работу нажмити \"Enter\"");
+            Console.WriteLine("Чтобы запустить работу нажмите \"Enter\"");
             Console.ReadLine();
 
             StartParser();
@@ -28,11 +33,13 @@ namespace ExelParser
             Console.ResetColor();
 
             Excel.Sheets _sheets;
+            _foundColumns = new Dictionary<string, int>();
+
             try
             {
                 using (ExcelHelper helper = new ExcelHelper())
                 {
-                    if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, "Test.xlsx")))
+                    if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, _file)))
                     {
                         _sheets = helper._workbook.Sheets;
 
@@ -44,18 +51,37 @@ namespace ExelParser
 
                             int RowsCount = urRows.Count;
                             int ColumnsCount = urColums.Count;
-                            for (int i = 1; i <= RowsCount; i++)
-                            {
-                                foreach (var column in _requiredColumns)
-                                {
-                                    Excel.Range CellRange = UsedRange.Cells[i, column];
 
+                            //Получение нужных столбцов
+                            for (int i = 1; i < 2; i++) 
+                            {
+                                for (int j = 1; j <= ColumnsCount; j++)
+                                {
+                                    Excel.Range CellRange = UsedRange.Cells[i, j];
+                                    string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
+                                                        (CellRange as Excel.Range).Value2.ToString();
+
+                                    if(_requiredColumns.Contains(cellText)) { _foundColumns.Add(cellText, j); }
+                                }
+                            }
+
+                            StatusColumns();
+                            Console.WriteLine($"Началась обработка! Необходимо обработать: {RowsCount} строк!");
+
+                            for (int i = 2; i <= RowsCount; i++)
+                            {
+                                foreach (var column in _foundColumns)
+                                {
+                                    Excel.Range CellRange = UsedRange.Cells[i, column.Value];
                                     string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
                                                         (CellRange as Excel.Range).Value2.ToString();
 
                                     if (cellText != null)
                                     {
-                                        //helper.Set(11, 2, data: "MYTEST2");
+                                        if(column.Key == _requiredColumns[0]) // если столбец под индексом 0, тоесть "ETA"
+                                        {
+                                            //helper.Set(i, 2, data: "MYTEST2"); //устанавливаем значение в нужную строку и колонку (строка автоматический берется и i)
+                                        }
                                     }
                                 }
                                 if (i % _numberRowsForProgress == 0)
@@ -77,6 +103,25 @@ namespace ExelParser
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        private static void StatusColumns()
+        {
+            string foundColumns = "";
+            foreach (var column in _foundColumns)
+            {
+                foundColumns += $"{column.Key}\t";
+            }
+            Console.WriteLine($"Найдено столбцов: {_foundColumns.Count} из {_requiredColumns.Count}");
+            Console.WriteLine(foundColumns);
+
+            if(_foundColumns.Count != _requiredColumns.Count)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"ВНИМАНИЕ! Несовпадение найденных и необходимых столбцов!\n" +
+                    $"Чтобы продолжить работу нажмите \"Enter\"");
+                Console.ResetColor();
+                Console.ReadKey();
+            }
         }
     }
 }
