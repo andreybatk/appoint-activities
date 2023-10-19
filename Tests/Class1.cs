@@ -2,15 +2,15 @@
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ExelParser
+namespace Tests
 {
-    class ExcelHelper : IDisposable
+    class Class1 : IDisposable
     {
         public Excel.Application _excel;
         public Excel.Workbook _workbook;
         private string _filePath;
 
-        public ExcelHelper()
+        public Class1()
         {
             _excel = new Excel.Application();
         }
@@ -37,9 +37,10 @@ namespace ExelParser
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return false;
         }
+
         internal void Save()
         {
-            if (string.IsNullOrEmpty(_filePath))
+            if (!string.IsNullOrEmpty(_filePath))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ошибка при сохранении! Файла {_filePath} не существует!");
@@ -54,6 +55,7 @@ namespace ExelParser
                 Console.ResetColor();
             }
         }
+
         internal bool Set(int column, int row, object data)
         {
             try

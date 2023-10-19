@@ -4,32 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ExelParser
+namespace Tests
 {
     class Program
     {
-        private static string file = "Test.xlsx";
+        //private Excel.Sheets _sheets;
         static void Main(string[] args)
         {
-            Console.WriteLine($"Работа с файлом {file}");
-            Console.WriteLine("Чтобы запустить работу нажмити \"Enter\"");
-            Console.ReadLine();
-
-            StartParser();
-        }
-        private static void StartParser()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Работа с файлом {file} началась!");
-            Console.ResetColor();
-
             Excel.Sheets _sheets;
             int[] requiredColumns = { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
             try
             {
-                using (ExcelHelper helper = new ExcelHelper())
+                using (Class1 helper = new Class1())
                 {
                     if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, "Test.xlsx")))
                     {
@@ -59,7 +48,7 @@ namespace ExelParser
                                     if (CellText != null)
                                     {
                                         //UsedRange.Cells[1, 1] = "qqq";
-                                        helper.Set(11, 2, data: "MYTEST2");
+                                        helper.Set(10, 1, data: "MYTEST");
                                     }
                                 }
                                 if (i % 2 == 0)
@@ -88,5 +77,3 @@ namespace ExelParser
         }
     }
 }
-
-
