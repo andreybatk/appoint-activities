@@ -13,8 +13,13 @@ namespace ExelParser
     {
         private static readonly string _file = "Test.xlsx";
         private static readonly int _numberRowsForProgress = 100;
+        /// <summary>
+        /// Найденные колонки в файле, которые соответствуют необходимым
+        /// </summary>
         private static Dictionary<string, int> _foundColumns;
- 
+        /// <summary>
+        /// Необходимые колонки
+        /// </summary>
         private static List<string> _requiredColumns = new List<string> {"ETA", "TOTA" };
         //private static List<int> _currentNumbersColumns = new List<int> { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
 
@@ -66,7 +71,7 @@ namespace ExelParser
                             }
 
                             StatusColumns();
-                            Console.WriteLine($"Началась обработка! Необходимо обработать: {RowsCount} строк!");
+                            Console.WriteLine($"Началась обработка! Необходимо обработать: {RowsCount} строк");
 
                             for (int i = 2; i <= RowsCount; i++)
                             {

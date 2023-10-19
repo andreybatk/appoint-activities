@@ -29,6 +29,7 @@ namespace ExelParser
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Ошибка при открытии! Файла {_filePath} не существует!");
                     Console.ResetColor();
+                    Console.ReadKey();
                     return false;
                 }
 
@@ -44,6 +45,7 @@ namespace ExelParser
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ошибка при сохранении! Файла {_filePath} не существует!");
                 Console.ResetColor();
+                Console.ReadKey();
                 return;
             }
             else
