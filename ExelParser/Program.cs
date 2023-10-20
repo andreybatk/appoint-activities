@@ -7,8 +7,8 @@ namespace ExelParser
 {
     class Program
     {
-        private static readonly string _file = "Test.xlsx";
-        private static readonly int _numberRowsForProgress = 100;
+        private static readonly string _file = "MainTest.xlsx";
+        private static readonly int _numberRowsForProgress = 1000;
         /// <summary>
         /// Найденные колонки в файле, которые соответствуют необходимым
         /// </summary>
@@ -54,16 +54,13 @@ namespace ExelParser
                             int ColumnsCount = urColums.Count;
 
                             //Получение нужных столбцов
-                            for (int i = 1; i < 2; i++) 
+                            for (int j = 1; j <= ColumnsCount; j++)
                             {
-                                for (int j = 1; j <= ColumnsCount; j++)
-                                {
-                                    Excel.Range CellRange = UsedRange.Cells[i, j];
-                                    string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
-                                                        (CellRange as Excel.Range).Value2.ToString();
+                                Excel.Range CellRange = UsedRange.Cells[1, j]; //row: 1 column: j
+                                string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
+                                                    (CellRange as Excel.Range).Value2.ToString();
 
-                                    if(_requiredColumns.Contains(cellText)) { _foundColumns.Add(cellText, j); }
-                                }
+                                if(_requiredColumns.Contains(cellText)) { _foundColumns.Add(cellText, j); }
                             }
 
                             StatusColumns();
@@ -87,7 +84,7 @@ namespace ExelParser
                                 }
                                 if (i % _numberRowsForProgress == 0)
                                 {
-                                    Console.Clear();
+                                    //Console.Clear();
                                     Console.WriteLine($"Прогресс: {i}/{RowsCount}");
                                 }
                             }
