@@ -7,7 +7,7 @@ namespace ExelParser
 {
     class Program
     {
-        private static readonly string _file = "MainTest.xlsx";
+        private static readonly string _file = "Test.xlsx";
         private static readonly int _numberRowsForProgress = 1000;
         /// <summary>
         /// Найденные колонки в файле, которые соответствуют необходимым
