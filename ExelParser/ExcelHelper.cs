@@ -52,7 +52,6 @@ namespace ExelParser
             {
                 _workbook.Save();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Прогресс: завершено");
                 Console.WriteLine($"Файл {_filePath} успешно сохранен!");
                 Console.ResetColor();
             }
