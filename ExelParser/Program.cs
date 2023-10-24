@@ -14,7 +14,7 @@ namespace ExelParser
     class Program
     {
         private static Stopwatch _watchTimer = new Stopwatch();
-        private static readonly string _file = "MainTest.xlsx";
+        private static readonly string _file = "Test.xlsx";
         /// <summary>
         /// показывать прогресс каждые _numberRowsForProgress строк
         /// </summary>
