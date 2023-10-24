@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExelParser.exe" size="15824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExelParser.exe" size="17872">
       <assemblyIdentity name="ExelParser" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1vRCwMErn3BUSVf6zwSJl4z+atarf9rmvxeAIE8CRuM=</dsig:DigestValue>
+        <dsig:DigestValue>MnS9NpgQSadIYWSqZ9FRLURbw0nnWkzmk5D0WY61ss0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
