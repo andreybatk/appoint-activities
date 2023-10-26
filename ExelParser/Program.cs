@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExelParser
 {
+    // TESTS MULTITHREADING:
+    // Примерное время завершения потоков: 13m. 34s.
+    // Работа завершена. Время: 0h 13m. 25s.
     class Program
     {
         private static Stopwatch _watchTimer = new Stopwatch();
-        private static readonly string _file = "Test.xlsx";
+        private static readonly string _file = "MainTest.xlsx";
+        private static int _numberRowsExecuted;
+        private static int _processorCount;
         /// <summary>
         /// показывать прогресс каждые _numberRowsForProgress строк
         /// </summary>
@@ -49,6 +51,7 @@ namespace ExelParser
             Console.ReadLine();
 
             StartParser();
+            _processorCount = Environment.ProcessorCount;
         }
         private static void StartParser()
         {
@@ -56,14 +59,14 @@ namespace ExelParser
 
             Excel.Sheets _sheets;
             _foundColumns = new Dictionary<string, int>();
-
+            bool showProgress = true;
             try
             {
                 using (ExcelHelper helper = new ExcelHelper())
                 {
                     if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, _file)))
                     {
-                        _sheets = helper._workbook.Sheets;
+                        _sheets = helper.Workbook.Sheets;
 
                         foreach (Excel.Worksheet worksheet in _sheets)
                         {  
@@ -85,36 +88,52 @@ namespace ExelParser
 
                             StatusColumns();
                             Console.WriteLine($"Началась обработка! Необходимо обработать: {RowsCount} строк");
-
-                            int startRowsCount1, endRowCount1;
-                            startRowsCount1 = 2; endRowCount1 = RowsCount / 4;
-
-                            int startRowsCount2, endRowCount2;
-                            startRowsCount2 = endRowCount1 + 1; endRowCount2 = endRowCount1 + endRowCount1;
-
-                            int startRowsCount3, endRowCount3;
-                            startRowsCount3 = endRowCount2 + 1; endRowCount3 = endRowCount2 + endRowCount1;
-
-                            int startRowsCount4, endRowCount4;
-                            startRowsCount4 = endRowCount3 + 1; endRowCount4 = RowsCount;
-
-                            Parallel.Invoke(
-                                () =>
+                            _watchTimer.Start();
+                            var options = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
+                            Parallel.For(2, RowsCount, options, i =>
+                            {
+                                foreach (var column in _foundColumns)
                                 {
-                                    ParseElement(startRowsCount1, endRowCount1, UsedRange, 1);
-                                },
-                                () =>
+                                    Excel.Range CellRange = UsedRange.Cells[i, column.Value];
+                                    string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
+                                                        (CellRange as Excel.Range).Value2.ToString();
+
+                                    if (cellText != null)
+                                    {
+                                        if (column.Key == _requiredColumns[0]) // если столбец под индексом 0
+                                        {
+                                            //helper.Set(i, 2, data: "MYTEST2"); //устанавливаем значение в нужную строку и колонку (строка автоматический берется и i)
+                                        }
+                                    }
+                                }
+
+                                #region PROGRESS BAR
+                                if (i % _numberRowsForProgress == 0)
                                 {
-                                    ParseElement(startRowsCount2, endRowCount2, UsedRange, 2);
-                                },
-                                () =>
+                                    _numberRowsExecuted += _numberRowsForProgress;
+                                    Console.WriteLine($"Поток: #{Thread.CurrentThread.ManagedThreadId}. Прогресс: {_numberRowsExecuted}/{RowsCount} ");
+                                }
+
+                                if (showProgress && _numberRowsExecuted == 1000)
                                 {
-                                    ParseElement(startRowsCount3, endRowCount3, UsedRange, 3);
-                                },
-                                () =>
-                                {
-                                    ParseElement(startRowsCount4, endRowCount4, UsedRange, 4);
-                                });
+                                    TimeSpan tempTimeSpan = _watchTimer.Elapsed;
+                                    double coeff = RowsCount / 1000;
+                                    var ts = TimeSpan.FromSeconds(tempTimeSpan.TotalSeconds * coeff);
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.WriteLine($"Используемые потоки завершили 1000 строк за {tempTimeSpan.Minutes}m. {tempTimeSpan.Seconds}s.");
+                                    Console.WriteLine($"Примерное время завершения потоков: {ts.Minutes}m. {ts.Seconds}s.");
+                                    Console.ResetColor();
+                                    showProgress = false;
+                                }
+                                #endregion
+                            });
+                            #region PROGRESS BAR ENDTIME
+                            TimeSpan timeSpan = _watchTimer.Elapsed;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Работа завершена. Время: {timeSpan.Hours}h {timeSpan.Minutes}m. {timeSpan.Seconds}s.");
+                            Console.ResetColor();
+                            _watchTimer.Stop();
+                            #endregion
                         }
                         helper.Save();
                     }
@@ -122,69 +141,19 @@ namespace ExelParser
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        private static void ParseElement(int StartRowsCount, int EndRowsCount, Excel.Range UsedRange, int thread)
-        {
-            bool isCheckTimeLeft = false;
-
-            _watchTimer.Start();
-            for (int i = StartRowsCount; i <= EndRowsCount; i++)
-            {
-                foreach (var column in _foundColumns)
-                {
-                    Excel.Range CellRange = UsedRange.Cells[i, column.Value];
-                    string cellText = (CellRange == null || CellRange.Value2 == null) ? null :
-                                        (CellRange as Excel.Range).Value2.ToString();
-
-                    if (cellText != null)
-                    {
-                        if (column.Key == _requiredColumns[0]) // если столбец под индексом 0
-                        {
-                            //helper.Set(i, 2, data: "MYTEST2"); //устанавливаем значение в нужную строку и колонку (строка автоматический берется и i)
-                        }
-                    }
-                }
-
-                #region PROGRESS BAR
-                if (i % _numberRowsForProgress == 0)
-                {
-                    Console.WriteLine($"Поток: #{thread}. Прогресс: {i}/{EndRowsCount} ");
-                }
-                if (!isCheckTimeLeft && thread == 1)
-                {
-                    if (i == 1000)
-                    {
-                        TimeSpan tempTimeSpan = _watchTimer.Elapsed;
-                        double coeff = EndRowsCount / 1000;
-                        var ts = TimeSpan.FromSeconds(tempTimeSpan.TotalSeconds * coeff);
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"Все потоки завершили 1000 строк за {tempTimeSpan.Minutes}m. {tempTimeSpan.Seconds}s.");
-                        Console.WriteLine($"Примерное время завершения потоков: {ts.Minutes}m. {ts.Seconds}s.");
-                        Console.ResetColor();
-                        isCheckTimeLeft = true;
-                    }
-                }
-                #endregion
-            }
-            #region PROGRESS BAR ENDTIME
-            TimeSpan timeSpan = _watchTimer.Elapsed;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Поток #{thread} завершил работу. Время: {timeSpan.Hours}h {timeSpan.Minutes}m. {timeSpan.Seconds}s.");
-            Console.ResetColor();
-            _watchTimer.Stop();
-            #endregion
-        }
         private static void StatusColumns()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Найдено столбцов: {_foundColumns.Count} из необходимых {_requiredColumns.Count}");
 
             if(_foundColumns.Count != _requiredColumns.Count)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"ВНИМАНИЕ! Несовпадение найденных и необходимых столбцов!\n" +
                     $"Чтобы продолжить работу нажмите \"Enter\"");
-                Console.ResetColor();
                 Console.ReadKey();
             }
+
+            Console.ResetColor();
         }
     }
 }

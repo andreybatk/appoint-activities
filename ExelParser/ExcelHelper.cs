@@ -6,23 +6,24 @@ namespace ExelParser
 {
     class ExcelHelper : IDisposable
     {
-        public Excel.Application _excel;
-        public Excel.Workbook _workbook;
+        public Excel.Application Excel;
+        public Excel.Workbook Workbook;
         private string _filePath;
 
         public ExcelHelper()
         {
-            _excel = new Excel.Application();
+            Excel = new Excel.Application();
         }
 
         internal bool Open(string filePath)
         {
+            Console.WriteLine("Открытие файла..");
             try
             {
                 if (File.Exists(filePath))
                 {
                     _filePath = filePath;
-                    _workbook = _excel.Workbooks.Open(filePath);
+                    Workbook = Excel.Workbooks.Open(filePath);
                 }
                 else
                 {
@@ -50,7 +51,7 @@ namespace ExelParser
             }
             else
             {
-                _workbook.Save();
+                Workbook.Save();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Файл {_filePath} успешно сохранен!");
                 Console.ResetColor();
@@ -60,7 +61,7 @@ namespace ExelParser
         {
             try
             {
-                ((Excel.Worksheet)_excel.ActiveSheet).Cells[row, column] = data;
+                ((Excel.Worksheet)Excel.ActiveSheet).Cells[row, column] = data;
                 return true;
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -70,8 +71,8 @@ namespace ExelParser
         {
             try
             {
-                _workbook.Close();
-                _excel.Quit();
+                Workbook.Close();
+                Excel.Quit();
                 Console.WriteLine($"Файл {_filePath} успешно закрыт!");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
