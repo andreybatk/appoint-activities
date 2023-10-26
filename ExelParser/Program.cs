@@ -11,6 +11,9 @@ namespace ExelParser
     // TESTS MULTITHREADING:
     // Примерное время завершения потоков: 13m. 34s.
     // Работа завершена. Время: 0h 13m. 25s.
+    // TESTS SINGLETHREADING:
+    // Примерное время завершения потоков: 25m. 12s.
+
     class Program
     {
         private static Stopwatch _watchTimer = new Stopwatch();
