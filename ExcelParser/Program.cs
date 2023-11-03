@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ExelParser
+namespace ExcelParser
 {
     // TESTS MULTITHREADING:
     // Примерное время завершения потоков: 13m. 34s.

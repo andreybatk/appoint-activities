@@ -2,7 +2,7 @@
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ExelParser
+namespace ExcelParser
 {
     class ExcelHelper : IDisposable
     {
