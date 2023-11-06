@@ -4,18 +4,21 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelParser
 {
-    class ExcelHelper : IDisposable
+    public class ExcelHelper : IDisposable
     {
-        public Excel.Application Excel;
-        public Excel.Workbook Workbook;
         private string _filePath;
+        private SuccessMessage _successMessage = PrintMessage.PrintSuccessMessage;
+        private ErrorMessage _errorMessage = PrintMessage.PrintErrorMessage;
 
         public ExcelHelper()
         {
             Excel = new Excel.Application();
         }
 
-        internal bool Open(string filePath)
+        public Excel.Application Excel;
+        public Excel.Workbook Workbook;
+
+        public bool Open(string filePath)
         {
             Console.WriteLine("Открытие файла..");
             try
@@ -27,44 +30,38 @@ namespace ExcelParser
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Ошибка при открытии! Файла {_filePath} не существует!");
-                    Console.ResetColor();
+                    _errorMessage?.Invoke($"Ошибка при открытии! Файла { _filePath} не существует!");
                     Console.ReadKey();
                     return false;
                 }
 
                 return true;
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { _errorMessage?.Invoke(ex.Message); }
             return false;
         }
-        internal void Save()
+        public void Save()
         {
             if (string.IsNullOrEmpty(_filePath))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Ошибка при сохранении! Файла {_filePath} не существует!");
-                Console.ResetColor();
+                _errorMessage?.Invoke($"Ошибка при сохранении! Файла {_filePath} не существует!");
                 Console.ReadKey();
                 return;
             }
             else
             {
                 Workbook.Save();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Файл {_filePath} успешно сохранен!");
-                Console.ResetColor();
+                _successMessage?.Invoke($"Файл {_filePath} успешно сохранен!");
             }
         }
-        internal bool Set(int column, int row, object data)
+        public bool Set(int column, int row, object data)
         {
             try
             {
                 ((Excel.Worksheet)Excel.ActiveSheet).Cells[row, column] = data;
                 return true;
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { _errorMessage?.Invoke(ex.Message); }
             return false;
         }
         public void Dispose()
@@ -73,9 +70,9 @@ namespace ExcelParser
             {
                 Workbook.Close();
                 Excel.Quit();
-                Console.WriteLine($"Файл {_filePath} успешно закрыт!");
+                _successMessage?.Invoke($"Файл {_filePath} успешно закрыт!");
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { _errorMessage?.Invoke(ex.Message); }
         }
     }
 }
