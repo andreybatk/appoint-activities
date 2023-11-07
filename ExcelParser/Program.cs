@@ -20,14 +20,20 @@ namespace ExcelParser
 
     internal class Program
     {
-        private static Stopwatch _watchTimer = new Stopwatch();
         private static readonly string _file = "MainTest.xlsx";
-        private static int _numberRowsExecuted;
-        private static int _processorCount;
         /// <summary>
-        /// показывать прогресс каждые _numberRowsForProgress строк
+        /// Показывать прогресс каждые _numberRowsForProgress строк
         /// </summary>
-        private static readonly int _numberRowsForProgress = 100;
+        private static readonly int _rowsForProgressCount = 100;
+        /// <summary>
+        /// Количество обработанных строк
+        /// </summary>
+        private static int _rowsExecutedCount;
+        /// <summary>
+        /// Количество логических процессоров на локальной машине
+        /// </summary>
+        private static int _processorCount;
+
         /// <summary>
         /// Найденные колонки в файле, которые соответствуют необходимым
         /// </summary>
@@ -49,6 +55,8 @@ namespace ExcelParser
             "Запас1",
             "Густота подр."
         };
+        private static Stopwatch _watchTimer = new Stopwatch();
+
         //private static List<int> _currentNumbersColumns = new List<int> { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
         private static SuccessMessage _successMessage = PrintMessage.PrintSuccessMessage;
         private static ErrorMessage _errorMessage = PrintMessage.PrintErrorMessage;
@@ -119,13 +127,13 @@ namespace ExcelParser
                                 }
 
                                 #region PROGRESS BAR
-                                if (i % _numberRowsForProgress == 0)
+                                if (i % _rowsForProgressCount == 0)
                                 {
-                                    _numberRowsExecuted += _numberRowsForProgress;
-                                    Console.WriteLine($"Поток: #{Thread.CurrentThread.ManagedThreadId}. Прогресс: {_numberRowsExecuted}/{RowsCount} ");
+                                    _rowsExecutedCount += _rowsForProgressCount;
+                                    Console.WriteLine($"Поток: #{Thread.CurrentThread.ManagedThreadId}. Прогресс: {_rowsExecutedCount}/{RowsCount} ");
                                 }
 
-                                if (showProgress && _numberRowsExecuted == 1000)
+                                if (showProgress && _rowsExecutedCount == 1000)
                                 {
                                     TimeSpan tempTimeSpan = _watchTimer.Elapsed;
                                     double coeff = RowsCount / 1000;

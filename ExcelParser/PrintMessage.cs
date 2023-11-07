@@ -9,6 +9,7 @@ namespace ExcelParser
     public delegate void SuccessMessage(string message);
     public delegate void ErrorMessage(string message);
     public delegate void WarningMessage(string message);
+
     public static class PrintMessage
     {
         public static void PrintSuccessMessage(string message)
