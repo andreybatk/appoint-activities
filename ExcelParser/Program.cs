@@ -18,7 +18,6 @@
             ExcelParser parser = new ExcelParser(_file);
             parser.Start();
         }
-        
     }
 }
 
