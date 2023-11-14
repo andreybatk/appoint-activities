@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelParser
 {
-    public delegate void SuccessMessage(string message);
-    public delegate void ErrorMessage(string message);
-    public delegate void WarningMessage(string message);
-
-    public static class PrintMessage
+    internal static class PrintMessage
     {
         public static void PrintSuccessMessage(string message)
         {

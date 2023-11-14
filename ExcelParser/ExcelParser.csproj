@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FA8B5DD4-F613-4FAB-B922-DE3127ACA0A4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ExelParser</RootNamespace>
-    <AssemblyName>ExelParser</AssemblyName>
+    <RootNamespace>ExcelParser</RootNamespace>
+    <AssemblyName>ExcelParser</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="ExcelParser.cs" />
     <Compile Include="PrintMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
