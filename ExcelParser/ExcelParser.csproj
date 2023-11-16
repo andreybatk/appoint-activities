@@ -124,8 +124,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ExcelParser.Models\ExcelParser.Models\ExcelParser.Models.csproj">
-      <Project>{8a225561-f973-4107-89e7-2aa4a1d64624}</Project>
+    <ProjectReference Include="..\ExcelParser.Models\ExcelParser.Models.csproj">
+      <Project>{07dfef1e-d8bf-4549-9f7e-74b12ac8f674}</Project>
       <Name>ExcelParser.Models</Name>
     </ProjectReference>
   </ItemGroup>

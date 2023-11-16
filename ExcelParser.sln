@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelParser", "ExcelParser\ExcelParser.csproj", "{FA8B5DD4-F613-4FAB-B922-DE3127ACA0A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelParser.Models", "..\ExcelParser.Models\ExcelParser.Models\ExcelParser.Models.csproj", "{8A225561-F973-4107-89E7-2AA4A1D64624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelParser.Models", "ExcelParser.Models\ExcelParser.Models.csproj", "{07DFEF1E-D8BF-4549-9F7E-74B12AC8F674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FA8B5DD4-F613-4FAB-B922-DE3127ACA0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8B5DD4-F613-4FAB-B922-DE3127ACA0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8B5DD4-F613-4FAB-B922-DE3127ACA0A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A225561-F973-4107-89E7-2AA4A1D64624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A225561-F973-4107-89E7-2AA4A1D64624}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A225561-F973-4107-89E7-2AA4A1D64624}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A225561-F973-4107-89E7-2AA4A1D64624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07DFEF1E-D8BF-4549-9F7E-74B12AC8F674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07DFEF1E-D8BF-4549-9F7E-74B12AC8F674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07DFEF1E-D8BF-4549-9F7E-74B12AC8F674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07DFEF1E-D8BF-4549-9F7E-74B12AC8F674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
