@@ -3,6 +3,9 @@ using ExcelParser.Models;
 
 namespace ExcelParser
 {
+    /// <summary>
+    /// Назначения мероприятий: Мер1, Мер2, PRVB
+    /// </summary>
     class Activitie
     {
         private ExcelHelper _excelHelper;
@@ -29,27 +32,27 @@ namespace ExcelParser
         /// </summary>
         private double _npdr { get; set; }
 
-        public Activitie(ExcelHelper excelHelper, ref Dictionary<string, int> foundColumnsForSettings, ref int currentRow)
+        public Activitie(ExcelHelper excelHelper, Dictionary<string, int> foundColumnsForSettings, int currentRow)
         {
             this._excelHelper = excelHelper;
             this._foundColumnsForSettings = foundColumnsForSettings;
             this._currentRow = currentRow;
         }
 
-        public void StartSetting()
+        public void StartSettings()
         {
-            if(!_isAppointActivitieOne)
+            var appointActivitieOne = AppointActivities();
+
+            if (!_isAppointActivitieOne)
             {
                 return;
             }
-
-            var appointActivitieOne = AppointActivitieOne();
 
             foreach (var column in _foundColumnsForSettings)
             {
                 if (column.Key == "PRVB")
                 {
-                    _excelHelper.Set(column.Value, _currentRow, data: appointActivitieOne.Item2.ToString());
+                    _excelHelper.Set(column.Value, _currentRow, data: appointActivitieOne.Item3.ToString());
                 }
                 if (column.Key == "MER1")
                 {
@@ -58,7 +61,7 @@ namespace ExcelParser
                 if (_isAppointActivitieTwo && column.Key == "MER2")
                 {
                     var appointActivitieTwo = AppointActivitieTwo();
-                    _excelHelper.Set(column.Value, _currentRow, data: appointActivitieTwo.ToString());
+                    _excelHelper.Set(column.Value, _currentRow, data: appointActivitieOne.Item2.ToString());
                 }
             }
         }
@@ -95,7 +98,7 @@ namespace ExcelParser
                 }
             }
         }
-        public (int activitie, int prvb) AppointActivitieOne()
+        private (int activitieOne, int activitieTwo, int prvb) AppointActivities()
         {
             if (this._katl == 80)
             {
@@ -103,18 +106,23 @@ namespace ExcelParser
                 {
                     if (this._grvoz == 4 || this._grvoz == 5)
                     {
-                        _isAppointActivitieTwo = true;
+                        _isAppointActivitieOne = true;
 
-                        var result = (10, 100);
+                        int activitieOne = 10;
+                        int prvb = 100;
+                        int activitieTwo = AppointActivitieTwo();
+
+                        var result = (activitieOne, activitieTwo, prvb);
                         return result;
                     }
                 }
             }
-            _isAppointActivitieTwo = false;
-            return (0, 0);
+            return (0, 0, 0);
         }
-        public int AppointActivitieTwo()
+        private int AppointActivitieTwo()
         {
+            _isAppointActivitieTwo = true;
+
             if (this._npdr >= 0 && this._npdr < 1)
             {
                 return 500;
@@ -123,15 +131,16 @@ namespace ExcelParser
             {
                 return 640;
             }
-            else if(this._npdr >= 1.5 && this._npdr < 2.5)
+            else if (this._npdr >= 1.5 && this._npdr < 2.5)
             {
                 return 690;
             }
-            else if(this._npdr >= 2.5)
+            else if (this._npdr >= 2.5)
             {
                 return 660;
             }
 
+            _isAppointActivitieTwo = false;
             return 0;
         }
     }

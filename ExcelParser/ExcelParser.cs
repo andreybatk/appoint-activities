@@ -32,7 +32,7 @@ namespace ExcelParser
         /// Найденные колонки для установления значений в файле, которые соответствуют необходимым
         /// </summary>
         private Dictionary<string, int> _foundColumnsForSettings = new Dictionary<string, int>();
-    
+
         public ExcelParser(string filePath)
         {
             this._filePath = filePath;
@@ -50,16 +50,15 @@ namespace ExcelParser
         private void StartParser()
         {
             Console.WriteLine($"Работа с файлом {_filePath} началась!");
-
-            Excel.Sheets sheets;
             bool showProgress = true;
+
             try
             {
                 using (ExcelHelper helper = new ExcelHelper())
                 {
                     if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, _filePath)))
                     {
-                        sheets = helper.Workbook.Sheets;
+                        Excel.Sheets sheets = helper.Workbook.Sheets;
 
                         foreach (Excel.Worksheet worksheet in sheets)
                         {
@@ -86,9 +85,10 @@ namespace ExcelParser
                             Stopwatch watchTimer = new Stopwatch();
                             watchTimer.Start();
                             var options = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
-                            Parallel.For(2, rowsCount, options, i =>
+                            
+                            Parallel.For(2, rowsCount + 1, options, i =>
                             {
-                                Activitie activitie = new Activitie(helper, ref _foundColumnsForSettings, ref i);
+                                Activitie activitie = new Activitie(helper, _foundColumnsForSettings, i);
 
                                 foreach (var column in _foundRequiredColumns)
                                 {
@@ -98,8 +98,7 @@ namespace ExcelParser
 
                                     activitie.CheckActivities(column.Key, cellText);
                                 }
-                                activitie.StartSetting();
-
+                                activitie.StartSettings();
 
                                 #region PROGRESS BAR
                                 if (i % _rowsForProgressCount == 0)
@@ -107,7 +106,7 @@ namespace ExcelParser
                                     _rowsExecutedCount += _rowsForProgressCount;
                                     Console.WriteLine($"Поток: #{Thread.CurrentThread.ManagedThreadId}. Прогресс: {_rowsExecutedCount}/{rowsCount} ");
                                 }
-
+                               
                                 if (showProgress && _rowsExecutedCount == 1000)
                                 {
                                     TimeSpan tempTimeSpan = watchTimer.Elapsed;
@@ -122,7 +121,9 @@ namespace ExcelParser
                             });
                             #region PROGRESS BAR ENDTIME
                             TimeSpan timeSpan = watchTimer.Elapsed;
-                            PrintMessage.PrintSuccessMessage($"Работа завершена. Время: {timeSpan.Hours}h {timeSpan.Minutes}m. {timeSpan.Seconds}s.");
+                            PrintMessage.PrintSuccessMessage($"Работа завершена. " +
+                                $"Время: {timeSpan.Hours}h {timeSpan.Minutes}m. {timeSpan.Seconds}s. " +
+                                $"Установлено значений: {helper.SettingsCount} ячеек.");
                             watchTimer.Stop();
                             #endregion
                         }

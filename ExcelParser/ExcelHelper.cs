@@ -11,25 +11,26 @@ namespace ExcelParser
         public ExcelHelper()
         {
             Excel = new Excel.Application();
+            SettingsCount = 0;
         }
 
+        public int SettingsCount;
         public Excel.Application Excel;
         public Excel.Workbook Workbook;
 
         public bool Open(string filePath)
-        {
-            Console.WriteLine("Открытие файла..");
+        {     
             try
             {
                 if (File.Exists(filePath))
                 {
+                    Console.WriteLine("Открытие файла..");
                     _filePath = filePath;
                     Workbook = Excel.Workbooks.Open(filePath);
                 }
                 else
                 {
-                    PrintMessage.PrintErrorMessage($"Ошибка при открытии! Файла { _filePath} не существует!");
-                    Console.ReadKey();
+                    PrintMessage.PrintErrorMessage($"Ошибка при открытии! Файла {filePath} не существует!");
                     return false;
                 }
 
@@ -40,23 +41,19 @@ namespace ExcelParser
         }
         public void Save()
         {
-            if (string.IsNullOrEmpty(_filePath))
-            {
-                PrintMessage.PrintErrorMessage($"Ошибка при сохранении! Файла {_filePath} не существует!");
-                Console.ReadKey();
-                return;
-            }
-            else
+            try
             {
                 Workbook.Save();
                 PrintMessage.PrintSuccessMessage($"Файл {_filePath} успешно сохранен!");
             }
+            catch (Exception ex) { PrintMessage.PrintErrorMessage(ex.Message); }
         }
         public bool Set(int column, int row, object data)
         {
             try
             {
                 ((Excel.Worksheet)Excel.ActiveSheet).Cells[row, column] = data;
+                SettingsCount++;
                 return true;
             }
             catch (Exception ex) { PrintMessage.PrintErrorMessage(ex.Message); }
