@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
+using ExcelParser.Models;
+using Microsoft.Office.Interop.Excel;
 
 namespace ExcelParser
 {
@@ -26,27 +29,12 @@ namespace ExcelParser
         /// <summary>
         /// Найденные колонки в файле, которые соответствуют необходимым
         /// </summary>
-        private Dictionary<string, int> _foundColumns;
+        private Dictionary<string, int> _foundRequiredColumns = new Dictionary<string, int>();
         /// <summary>
-        /// Необходимые колонки
+        /// Найденные колонки для установления значений в файле, которые соответствуют необходимым
         /// </summary>
-        private List<string> _requiredColumns = new List<string>
-        {   "Катег. защитн.",
-            "Катег. Земель",
-            "Мер. 1",
-            "% выборки",
-            "Группа А",
-            "Класс А",
-            "Преобл. Порода",
-            "Бонитет",
-            "ТЛУ",
-            "A1",
-            "Полнота1",
-            "Запас1",
-            "Густота подр."
-        };
-        //private static List<int> _currentNumbersColumns = new List<int> { 4, 10, 18, 19, 26, 27, 28, 30, 32, 44, 49, 51, 151 };
-        
+        private Dictionary<string, int> _foundColumnsForSettings = new Dictionary<string, int>();
+    
         public ExcelParser(string filePath)
         {
             this._filePath = filePath;
@@ -66,7 +54,6 @@ namespace ExcelParser
             Console.WriteLine($"Работа с файлом {_filePath} началась!");
 
             Excel.Sheets sheets;
-            _foundColumns = new Dictionary<string, int>();
             bool showProgress = true;
             try
             {
@@ -91,7 +78,8 @@ namespace ExcelParser
                                 string cellText = (cellRange == null || cellRange.Value2 == null) ? null :
                                                     (cellRange as Excel.Range).Value2.ToString();
 
-                                if (_requiredColumns.Contains(cellText)) { _foundColumns.Add(cellText, j); }
+                                if (Columns.RequiredColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
+                                if (Columns.ColumnsForSettings.Contains(cellText)) { _foundColumnsForSettings.Add(cellText, j); }
                             }
 
                             StatusColumns();
@@ -102,20 +90,18 @@ namespace ExcelParser
                             var options = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
                             Parallel.For(2, rowsCount, options, i =>
                             {
-                                foreach (var column in _foundColumns)
+                                Activitie activitie = new Activitie(helper, ref _foundColumnsForSettings, ref i);
+
+                                foreach (var column in _foundRequiredColumns)
                                 {
                                     Excel.Range cellRange = usedRange.Cells[i, column.Value];
                                     string cellText = (cellRange == null || cellRange.Value2 == null) ? null :
                                                         (cellRange as Excel.Range).Value2.ToString();
 
-                                    if (cellText != null)
-                                    {
-                                        if (column.Key == _requiredColumns[0]) // если столбец под индексом 0
-                                        {
-                                            //helper.Set(i, 2, data: "MYTEST2"); //устанавливаем значение в нужную строку и колонку (строка автоматический берется и i)
-                                        }
-                                    }
+                                    activitie.CheckActivities(column.Key, cellText);
                                 }
+                                activitie.StartSetting();
+
 
                                 #region PROGRESS BAR
                                 if (i % _rowsForProgressCount == 0)
@@ -150,11 +136,18 @@ namespace ExcelParser
         }
         private void StatusColumns()
         {
-            PrintMessage.PrintSuccessMessage($"Найдено столбцов: {_foundColumns.Count - 1} из необходимых {_requiredColumns.Count - 1}");
+            PrintMessage.PrintSuccessMessage($"Найдено обрабатываемых столбцов: {_foundRequiredColumns.Count} из необходимых {Columns.RequiredColumns.Count}");
+            PrintMessage.PrintSuccessMessage($"Найдено столбцов для установления значений: {_foundColumnsForSettings.Count} из необходимых {Columns.ColumnsForSettings.Count}");
 
-            if (_foundColumns.Count != _requiredColumns.Count)
+            if (_foundRequiredColumns.Count != Columns.RequiredColumns.Count)
             {
-                PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных и необходимых столбцов!\n" +
+                PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных обрабатываемых и необходимых столбцов!\n" +
+                $"Чтобы продолжить работу нажмите \"Enter\"");
+                Console.ReadKey();
+            }
+            if (_foundColumnsForSettings.Count != Columns.ColumnsForSettings.Count)
+            {
+                PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных столбцов для установления значений и необходимых столбцов!\n" +
                 $"Чтобы продолжить работу нажмите \"Enter\"");
                 Console.ReadKey();
             }

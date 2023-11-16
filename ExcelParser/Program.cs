@@ -11,7 +11,7 @@
 
     internal class Program
     {
-        private static readonly string _file = "MainTest.xlsx";
+        private static readonly string _file = "AIS_POL.xlsx";
 
         static void Main(string[] args)
         {
