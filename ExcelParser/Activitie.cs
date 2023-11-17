@@ -90,9 +90,7 @@ namespace ExcelParser
             }
             if (column == Columns.RequiredColumns[3]) // NPDR
             {
-                cellText.Replace(',', '.');
-
-                if (double.TryParse(cellText, out double result))
+                if (double.TryParse(cellText.Replace(',', '.'), out double result))
                 {
                     this._npdr = result;
                 }
