@@ -4,9 +4,9 @@ using ExcelParser.Models;
 namespace ExcelParser
 {
     /// <summary>
-    /// Первый сценарий назначения мероприятий - классическое хозяйство
+    /// Третий сценарий назначения мероприятий - максимально лесокультурный эффект
     /// </summary>
-    class Activitie : IActivitie
+    class Activitie3 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
@@ -49,11 +49,15 @@ namespace ExcelParser
         /// </summary>
         private int _ks2;
         /// <summary>
+        /// ТЛУ
+        /// </summary>
+        private int _tlu;
+        /// <summary>
         /// Ярус 2
         /// </summary>
         private int _jr2;
 
-        public Activitie(ExcelHelper excelHelper, Dictionary<string, int> foundColumnsForFilling, int currentRow)
+        public Activitie3(ExcelHelper excelHelper, Dictionary<string, int> foundColumnsForFilling, int currentRow)
         {
             _excelHelper = excelHelper;
             _foundColumnsForFilling = foundColumnsForFilling;
@@ -139,6 +143,13 @@ namespace ExcelParser
                     _ks2 = result;
                 }
             }
+            if (column == Columns.RequiredColumns[8]) // TLU
+            {
+                if (int.TryParse(cellText, out int result))
+                {
+                    _tlu = result;
+                }
+            }
             if (column == Columns.RequiredJrColumns[1]) // JR2
             {
                 if (int.TryParse(cellText, out int result))
@@ -154,10 +165,9 @@ namespace ExcelParser
                 }
             }
         }
+
         private (int activitieOne, int activitieTwo, int prvb) AppointActivities()
         {
-            if (_ozu != 0) return (0, 0, 0);
-
             int activitieOne = 0;
             int prvb = 0;
             int activitieTwo = 0;
@@ -166,69 +176,72 @@ namespace ExcelParser
 
             if (_grvoz == 4 || _grvoz == 5) // Выбираем спелые и перестойные насаждения 
             {
-
                 if (_katl == 80) //эксплаутационные
                 {
-                    activitieOne = 10; // сплошные рубки
-                    prvb = 100;
-                    activitieTwo = AppointActivitieTwo();
-                }
-                // все кроме 80
-                else
-                {
-                    activitieOne = 80; // выборочные рубки
-                    
-                    if (_totalpol == 0.5 || _totalpol == 0.4 || _totalpol == 0.3)
-                    {
-                        activitieOne = 55; // заключительный прием выборочных рубок
-                        prvb = 70; // Процент выборки 70%
+                    if (_ozu != 0) return (0, 0, 0);
 
-                        if(_jr2 == 0)
-                        {
-                            activitieTwo = AppointActivitieTwo();
-                        }
+                    if ((_tlu >= 1 && _tlu <= 4) || (_tlu >= 7 && _tlu <= 10) || (_tlu >= 13 && _tlu <= 16))
+                    {
+                        activitieOne = 10; // сплошные рубки
+                        prvb = 100;
+                        activitieTwo = AppointActivitieTwo();
                     }
                     else
                     {
-                        switch (_totalpol)
+                        activitieOne = 80; // выборочные рубки
+
+                        if (_totalpol == 0.5 || _totalpol == 0.4 || _totalpol == 0.3)
                         {
-                            case 0.6:
-                                prvb = 15;
-                                break;
-                            case 0.7:
-                                prvb = 25;
-                                break;
-                            case 0.8:
-                                prvb = 35;
-                                break;
-                            case 0.9:
-                                prvb = 45;
-                                break;
-                            case 1:
-                                prvb = 50;
-                                break;
-                            case 1.1:
-                                prvb = 50;
-                                break;
-                            case 1.2:
-                                prvb = 55;
-                                break;
-                            case 1.3:
-                                prvb = 60;
-                                break;
-                            case 1.4:
-                                prvb = 60;
-                                break;
-                            case 1.5:
-                                prvb = 65;
-                                break;
-                            default:
-                                break;
+                            activitieOne = 55; // заключительный прием выборочных рубок
+                            prvb = 70; // Процент выборки 70%
+
+                            if (_jr2 == 0)
+                            {
+                                activitieTwo = AppointActivitieTwo();
+                            }
+                        }
+                        else
+                        {
+                            switch (_totalpol)
+                            {
+                                case 0.6:
+                                    prvb = 15;
+                                    break;
+                                case 0.7:
+                                    prvb = 25;
+                                    break;
+                                case 0.8:
+                                    prvb = 35;
+                                    break;
+                                case 0.9:
+                                    prvb = 45;
+                                    break;
+                                case 1:
+                                    prvb = 50;
+                                    break;
+                                case 1.1:
+                                    prvb = 50;
+                                    break;
+                                case 1.2:
+                                    prvb = 55;
+                                    break;
+                                case 1.3:
+                                    prvb = 60;
+                                    break;
+                                case 1.4:
+                                    prvb = 60;
+                                    break;
+                                case 1.5:
+                                    prvb = 65;
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
 
-                if(_katl != 80) //защитные
+                if (_katl != 80) //защитные
                 {
                     if (_ks1 >= 8)
                     {

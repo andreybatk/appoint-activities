@@ -1,4 +1,6 @@
-﻿namespace ExcelParser
+﻿using System;
+
+namespace ExcelParser
 {
     /*
      TESTS MULTITHREADING:
@@ -11,12 +13,14 @@
 
     internal class Program
     {
-        private static readonly string _file = "AIS_POL.xlsx";
+        private static readonly string _filePath = "AIS_POL_ACT6.xlsx";
 
         static void Main(string[] args)
         {
-            ExcelParser parser = new ExcelParser(_file);
+            ExcelParser parser = new ExcelParser(_filePath);
             parser.Start();
+
+            Console.ReadKey();
         }
     }
 }

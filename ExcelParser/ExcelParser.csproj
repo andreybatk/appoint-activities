@@ -72,15 +72,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activitie.cs" />
+    <Compile Include="Activitie2.cs" />
+    <Compile Include="Activitie3.cs" />
+    <Compile Include="Activitie4.cs" />
+    <Compile Include="Activitie5.cs" />
+    <Compile Include="Activitie6.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="ExcelParser.cs" />
+    <Compile Include="IActivitie.cs" />
     <Compile Include="PrintMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ExelParser_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

@@ -31,7 +31,7 @@ namespace ExcelParser
         /// <summary>
         /// Найденные колонки для установления значений в файле, которые соответствуют необходимым
         /// </summary>
-        private Dictionary<string, int> _foundColumnsForSettings = new Dictionary<string, int>();
+        private Dictionary<string, int> _foundColumnsForFilling = new Dictionary<string, int>();
 
         public ExcelParser(string filePath)
         {
@@ -76,7 +76,10 @@ namespace ExcelParser
                                                     (cellRange as Excel.Range).Value2.ToString();
 
                                 if (Columns.RequiredColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
-                                if (Columns.ColumnsForSettings.Contains(cellText)) { _foundColumnsForSettings.Add(cellText, j); }
+                                if (Columns.ColumnsForFilling.Contains(cellText)) { _foundColumnsForFilling.Add(cellText, j); }
+                                if (Columns.RequiredPolColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
+                                if (Columns.RequiredJrColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
+                                
                             }
 
                             StatusColumns();
@@ -88,7 +91,7 @@ namespace ExcelParser
                             
                             Parallel.For(2, rowsCount + 1, options, i =>
                             {
-                                Activitie activitie = new Activitie(helper, _foundColumnsForSettings, i);
+                                IActivitie activitie = new Activitie6(helper, _foundColumnsForFilling, i);
 
                                 foreach (var column in _foundRequiredColumns)
                                 {
@@ -96,9 +99,9 @@ namespace ExcelParser
                                     string cellText = (cellRange == null || cellRange.Value2 == null) ? null :
                                                         (cellRange as Excel.Range).Value2.ToString();
 
-                                    activitie.CheckActivities(column.Key, cellText);
+                                    activitie.CheckCells(column.Key, cellText);
                                 }
-                                activitie.StartSettings();
+                                activitie.FillCells();
 
                                 #region PROGRESS BAR
                                 if (i % _rowsForProgressCount == 0)
@@ -135,16 +138,16 @@ namespace ExcelParser
         }
         private void StatusColumns()
         {
-            PrintMessage.PrintSuccessMessage($"Найдено обрабатываемых столбцов: {_foundRequiredColumns.Count} из необходимых {Columns.RequiredColumns.Count}");
-            PrintMessage.PrintSuccessMessage($"Найдено столбцов для установления значений: {_foundColumnsForSettings.Count} из необходимых {Columns.ColumnsForSettings.Count}");
+            //PrintMessage.PrintSuccessMessage($"Найдено обрабатываемых столбцов: {_foundRequiredColumns.Count} из необходимых {Columns.RequiredColumns.Count}");
+            PrintMessage.PrintSuccessMessage($"Найдено столбцов для установления значений: {_foundColumnsForFilling.Count} из необходимых {Columns.ColumnsForFilling.Count}");
 
-            if (_foundRequiredColumns.Count != Columns.RequiredColumns.Count)
-            {
-                PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных обрабатываемых и необходимых столбцов!\n" +
-                $"Чтобы продолжить работу нажмите \"Enter\"");
-                Console.ReadKey();
-            }
-            if (_foundColumnsForSettings.Count != Columns.ColumnsForSettings.Count)
+            //if (_foundRequiredColumns.Count != Columns.RequiredColumns.Count)
+            //{
+            //    PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных обрабатываемых и необходимых столбцов!\n" +
+            //    $"Чтобы продолжить работу нажмите \"Enter\"");
+            //    Console.ReadKey();
+            //}
+            if (_foundColumnsForFilling.Count != Columns.ColumnsForFilling.Count)
             {
                 PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных столбцов для установления значений и необходимых столбцов!\n" +
                 $"Чтобы продолжить работу нажмите \"Enter\"");

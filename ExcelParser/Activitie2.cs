@@ -4,9 +4,9 @@ using ExcelParser.Models;
 namespace ExcelParser
 {
     /// <summary>
-    /// Первый сценарий назначения мероприятий - классическое хозяйство
+    /// Второй сценарий назначения мероприятий - выборочное хозяйство
     /// </summary>
-    class Activitie : IActivitie
+    class Activitie2 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
@@ -53,7 +53,7 @@ namespace ExcelParser
         /// </summary>
         private int _jr2;
 
-        public Activitie(ExcelHelper excelHelper, Dictionary<string, int> foundColumnsForFilling, int currentRow)
+        public Activitie2(ExcelHelper excelHelper, Dictionary<string, int> foundColumnsForFilling, int currentRow)
         {
             _excelHelper = excelHelper;
             _foundColumnsForFilling = foundColumnsForFilling;
@@ -161,93 +161,101 @@ namespace ExcelParser
             int activitieOne = 0;
             int prvb = 0;
             int activitieTwo = 0;
-
-            //проверить что ресулт сохраняет правильный значения после изменений интов
+            var result = (activitieOne, activitieTwo, prvb);
 
             if (_grvoz == 4 || _grvoz == 5) // Выбираем спелые и перестойные насаждения 
             {
 
-                if (_katl == 80) //эксплаутационные
+                if (_ks1 >= 8) 
                 {
-                    activitieOne = 10; // сплошные рубки
-                    prvb = 100;
-                    activitieTwo = AppointActivitieTwo();
+                    if(_por1 == 100200 || _por1 == 100300)
+                    {
+                        if(_katl == 80)
+                        {
+                            activitieOne = 10;
+                            prvb = 100;
+                        }
+                        else
+                        {
+                            activitieOne = 0;
+                            prvb = 0;
+                        }
+                        result = (activitieOne, activitieTwo, prvb);
+                        return result;
+                    }
                 }
-                // все кроме 80
+
+                if ((_por1 == 100200 || _por1 == 100300) && (_por2 == 100200 || _por2 == 100300))
+                {
+                    if (_ks1 + _ks2 >= 8)
+                    {
+                        if (_katl == 80)
+                        {
+                            activitieOne = 10;
+                            prvb = 100;
+                        }
+                        else
+                        {
+                            activitieOne = 0;
+                            prvb = 0;
+                        }
+                        result = (activitieOne, activitieTwo, prvb);
+                        return result;
+                    }
+                }
+
+                activitieOne = 80; // выборочные рубки
+
+                if (_totalpol == 0.5 || _totalpol == 0.4 || _totalpol == 0.3)
+                {
+                    activitieOne = 55; // заключительный прием выборочных рубок
+                    prvb = 70; // Процент выборки 70%
+
+                    if (_jr2 == 0)
+                    {
+                        activitieTwo = AppointActivitieTwo();
+                    }
+                }
                 else
                 {
-                    activitieOne = 80; // выборочные рубки
-                    
-                    if (_totalpol == 0.5 || _totalpol == 0.4 || _totalpol == 0.3)
+                    switch (_totalpol)
                     {
-                        activitieOne = 55; // заключительный прием выборочных рубок
-                        prvb = 70; // Процент выборки 70%
-
-                        if(_jr2 == 0)
-                        {
-                            activitieTwo = AppointActivitieTwo();
-                        }
-                    }
-                    else
-                    {
-                        switch (_totalpol)
-                        {
-                            case 0.6:
-                                prvb = 15;
-                                break;
-                            case 0.7:
-                                prvb = 25;
-                                break;
-                            case 0.8:
-                                prvb = 35;
-                                break;
-                            case 0.9:
-                                prvb = 45;
-                                break;
-                            case 1:
-                                prvb = 50;
-                                break;
-                            case 1.1:
-                                prvb = 50;
-                                break;
-                            case 1.2:
-                                prvb = 55;
-                                break;
-                            case 1.3:
-                                prvb = 60;
-                                break;
-                            case 1.4:
-                                prvb = 60;
-                                break;
-                            case 1.5:
-                                prvb = 65;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-
-                if(_katl != 80) //защитные
-                {
-                    if (_ks1 >= 8)
-                    {
-                        if (_por1 == 100200 || _por1 == 100300) //темная хвоя ель пихта
-                        {
-                            return (0, 0, 0);
-                        }
-                    }
-
-                    if ((_por1 == 100200 || _por1 == 100300) && (_por2 == 100200 || _por2 == 100300))
-                    {
-                        if (_ks1 + _ks2 >= 8)
-                        {
-                            return (0, 0, 0);
-                        }
+                        case 0.6:
+                            prvb = 15;
+                            break;
+                        case 0.7:
+                            prvb = 25;
+                            break;
+                        case 0.8:
+                            prvb = 35;
+                            break;
+                        case 0.9:
+                            prvb = 45;
+                            break;
+                        case 1:
+                            prvb = 50;
+                            break;
+                        case 1.1:
+                            prvb = 50;
+                            break;
+                        case 1.2:
+                            prvb = 55;
+                            break;
+                        case 1.3:
+                            prvb = 60;
+                            break;
+                        case 1.4:
+                            prvb = 60;
+                            break;
+                        case 1.5:
+                            prvb = 65;
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
-            var result = (activitieOne, activitieTwo, prvb);
+            result = (activitieOne, activitieTwo, prvb);
             return result;
         }
         private int AppointActivitieTwo()

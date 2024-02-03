@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>Img\screenicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="screensaver.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Img\screenicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WpfApplication.DB\WpfApplication.DB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Img\screensaver.jpg" />
+  </ItemGroup>
+
+</Project>
