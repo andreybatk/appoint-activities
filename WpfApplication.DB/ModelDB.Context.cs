@@ -16,7 +16,6 @@ namespace WpfApplication.DB
 
     public partial class MsSqlForestEntities : DbContext
     {
-        
         public MsSqlForestEntities()
             : base("name=MsSqlForestEntities")
         {

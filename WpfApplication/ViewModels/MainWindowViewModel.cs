@@ -15,29 +15,30 @@ namespace WpfApplication.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         private BindingList<MyTable> _data;
-        private MsSqlForestEntities dbContext;
+        private MsSqlForestEntities _dbContext;
         private string _currentActivitieInfo;  
 
         public MainWindowViewModel()
         {
-            dbContext = new MsSqlForestEntities();
+            _dbContext = new MsSqlForestEntities();
             Preparing();
 
             ChangeConectionCommand = new RelayCommand(OnChangeConectionCommandExecuted);
-            UpdataDBCommand = new RelayCommand(OnUpdataDBCommandExecuted);
+            ConnectionInfoCommand = new RelayCommand(OnConnectionInfoCommandExecuted);
             ActivitieCommand = new RelayCommand(OnActivitieCommandExecuted);
             Activitie2Command = new RelayCommand(OnActivitie2CommandExecuted);
             Activitie3Command = new RelayCommand(OnActivitie3CommandExecuted);
             Activitie4Command = new RelayCommand(OnActivitie4CommandExecuted);
             Activitie5Command = new RelayCommand(OnActivitie5CommandExecuted);
             Activitie6Command = new RelayCommand(OnActivitie6CommandExecuted);
+            
         }
 
         public BindingList<MyTable> DataList { get => _data; set => Set(ref _data, value); }
         public string CurrentActivitieInfo { get => _currentActivitieInfo; set => Set(ref _currentActivitieInfo, value); }
         
+        public ICommand ConnectionInfoCommand { get; }
         public ICommand ChangeConectionCommand { get; }
-        public ICommand UpdataDBCommand { get; }
         public ICommand ActivitieCommand { get; }
         public ICommand Activitie2Command { get; }
         public ICommand Activitie3Command { get; }
@@ -49,8 +50,8 @@ namespace WpfApplication.ViewModels
         {
             try
             {
-                dbContext.MyTable.Load();
-                DataList = dbContext.MyTable.Local.ToBindingList();
+                _dbContext.MyTable.Load();
+                DataList = _dbContext.MyTable.Local.ToBindingList();
             }
             catch (Exception ex)
             {
@@ -58,16 +59,18 @@ namespace WpfApplication.ViewModels
             } 
         }
 
-        private void OnUpdataDBCommandExecuted(object p)
+        private void OnConnectionInfoCommandExecuted(object p)
         {
             try
             {
-                DataList = dbContext.MyTable.Local.ToBindingList();
-                MessageBox.Show("Таблица обновлена.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                ConnectionInfo window = new ConnectionInfo();
+                ConnectionInfoViewModel windowViewModel = new ConnectionInfoViewModel(window);
+                window.DataContext = windowViewModel;
+                window.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitieCommandExecuted(object p)
@@ -81,12 +84,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 1";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("1 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitie2CommandExecuted(object p)
@@ -100,12 +103,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 2";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("2 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitie3CommandExecuted(object p)
@@ -119,12 +122,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 3";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("3 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitie4CommandExecuted(object p)
@@ -138,12 +141,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 4";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("4 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitie5CommandExecuted(object p)
@@ -157,12 +160,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 5";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("5 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnActivitie6CommandExecuted(object p)
@@ -176,12 +179,12 @@ namespace WpfApplication.ViewModels
                     appointActivitie.AppointActivitie();
                 }
                 CurrentActivitieInfo = "Текущий сценарий: 6";
-                dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 MessageBox.Show("6 сценарий завершен успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnChangeConectionCommandExecuted(object p)
@@ -193,10 +196,7 @@ namespace WpfApplication.ViewModels
 
             if(window.DialogResult.Value)
             {
-                if(windowViewModel.IsCheckedBox)
-                {
-                    Application.Current.Shutdown();
-                }
+                Application.Current.Shutdown();
             }
         }
     }

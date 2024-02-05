@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Img\screenicon.ico" />
+    <Resource Include="Img\screenicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WpfApplication.DB\WpfApplication.DB.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <SplashScreen Include="Img\screensaver.jpg" />
   </ItemGroup>
 
 </Project>

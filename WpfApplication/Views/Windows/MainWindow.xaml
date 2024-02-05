@@ -29,6 +29,9 @@
             <MenuItem Header="Файл" >
                 <MenuItem Header="Настройка подключения" Command="{Binding ChangeConectionCommand}"/>
             </MenuItem>
+            <MenuItem Header="Информация">
+                <MenuItem Header="Как узнать строку подключения?" Command="{Binding ConnectionInfoCommand}"/>
+            </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="Назначение мероприятий:" Foreground="{DynamicResource mainTextColor}"/>
@@ -45,8 +48,8 @@
                     Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
             <Button Content="6 сценарий" Command="{Binding Activitie6Command}"
                     Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="Обновить таблицу" Command="{Binding UpdataDBCommand}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <!--<Button Content="Обновить таблицу" Command="{Binding UpdataDBCommand}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>-->
         </StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="2"
                   AutoGenerateColumns="True"

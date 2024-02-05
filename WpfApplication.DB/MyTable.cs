@@ -11,7 +11,8 @@ namespace WpfApplication.DB
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class MyTable
     {
         public int ID { get; set; }
