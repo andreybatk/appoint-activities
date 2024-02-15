@@ -16,23 +16,19 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0">Server (Data Source):</TextBlock>
         <TextBox Grid.Row="1" MinWidth="250" IsEnabled="{Binding IsEnableTextBox}"
              Text = "{Binding DataSource, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBlock Grid.Row="2">Data Base (Initial Catalog):</TextBlock>
-        <TextBox Grid.Row="3" MinWidth="250" IsEnabled="{Binding IsEnableTextBox}"
-             Text = "{Binding InitialCatalog, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBlock Grid.Row="4">Table:</TextBlock>
-        <TextBox Grid.Row="5" MinWidth="250" IsEnabled="False"
-             Text = "MyTable"></TextBox>
-        <CheckBox Grid.Row="7" IsChecked="{Binding IsCheckedBoxCustomConnection}" Height="20" Content="Задать вручную"/>
-        <TextBox Grid.Row="8" MinWidth="250" IsEnabled="{Binding IsEnableTextBoxCustomConnection}"
-     Text = "{Binding CustomConnectionString, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <WrapPanel Grid.Row="10" HorizontalAlignment="Right" Margin="0,15,0,0">
+        <TextBlock Grid.Row="2">File Path</TextBlock>
+        <TextBox Grid.Row="3" MinWidth="250" IsEnabled="{Binding IsEnableTextBox}" 
+             Text = "{Binding InitialCatalog, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="4" >Table:</TextBlock>
+        <TextBox Grid.Row="5" MinWidth="250" IsEnabled="False" 
+             Text = "OS_INFO"></TextBox>
+        <Button Grid.Row="7" Content="Выбрать путь к БД" Command="{Binding FilePathCommand}"/>
+        <WrapPanel Grid.Row="8" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button IsDefault="True" MinWidth="60" Margin="0,0,10,0" Command="{Binding OkCommand}">OK</Button>
             <Button IsCancel="True" MinWidth="60">Отмена</Button>
         </WrapPanel>

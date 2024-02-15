@@ -29,9 +29,9 @@
             <MenuItem Header="Файл" >
                 <MenuItem Header="Настройка подключения" Command="{Binding ChangeConectionCommand}"/>
             </MenuItem>
-            <MenuItem Header="Информация">
+            <!--<MenuItem Header="Информация">
                 <MenuItem Header="Как узнать строку подключения?" Command="{Binding ConnectionInfoCommand}"/>
-            </MenuItem>
+            </MenuItem>-->
         </Menu>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Label Content="Назначение мероприятий:" Foreground="{DynamicResource mainTextColor}"/>
@@ -52,9 +52,15 @@
                     Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>-->
         </StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="2"
-                  AutoGenerateColumns="True"
+                  AutoGenerateColumns="False"
                   IsReadOnly="True"
                   ItemsSource="{Binding DataList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
+                <DataGridTextColumn Header="Мероприятие 1" Binding="{Binding Path=MER1}" />
+                <DataGridTextColumn Header="Мероприятие 2" Binding="{Binding Path=MER2}"  />
+                <DataGridTextColumn Header="Процент выборки" Binding="{Binding Path=PRVB}"  />
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

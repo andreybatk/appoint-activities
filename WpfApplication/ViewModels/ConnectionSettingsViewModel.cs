@@ -14,8 +14,6 @@ namespace WpfApplication.ViewModels
     {
         private string _dataSource;
         private string _initialCatalog;
-        private string _customConnectionString;
-        private bool _isCheckedBoxCustomConnection = false;
         private bool _isEnableTextBoxCustomConnection = false;
         private bool _isEnableTextBox = true;
         private ConnectionSettings _window;
@@ -25,36 +23,48 @@ namespace WpfApplication.ViewModels
             _window = window;
 
             OkCommand = new RelayCommand(OnOkCommandExecuted, CanOkCommandExecute);
-
+            FilePathCommand = new RelayCommand(OnFilePathCommandExecuted);
             SetTextBoxInfo();
-        }
-        public bool IsCheckedBoxCustomConnection
-        {
-            get
-            {
-                return _isCheckedBoxCustomConnection;
-            }
-            set
-            {
-                Set(ref _isCheckedBoxCustomConnection, value);
-                IsEnableTextBoxCustomConnection = value;
-                IsEnableTextBox = !value;
-            }
         }
         public bool IsEnableTextBoxCustomConnection { get => _isEnableTextBoxCustomConnection; set => Set(ref _isEnableTextBoxCustomConnection, value); }
         public bool IsEnableTextBox { get => _isEnableTextBox; set => Set(ref _isEnableTextBox, value); }
         public string DataSource { get => _dataSource; set => Set(ref _dataSource, value); }
-        public string CustomConnectionString { get => _customConnectionString; set => Set(ref _customConnectionString, value); }
         public string InitialCatalog { get => _initialCatalog; set => Set(ref _initialCatalog, value); }
         public ICommand OkCommand { get; }
+        public ICommand FilePathCommand { get; }
 
         private bool CanOkCommandExecute(object p)
         {
-            if ((!String.IsNullOrEmpty(DataSource) && !String.IsNullOrEmpty(InitialCatalog)) || !String.IsNullOrEmpty(CustomConnectionString))
+            if ((!String.IsNullOrEmpty(DataSource) && !String.IsNullOrEmpty(InitialCatalog)))
             {
                 return true;
             }
             return false;
+        }
+        private void OnFilePathCommandExecuted(object p)
+        {
+            try
+            {
+                // Configure open file dialog box
+                var dialog = new Microsoft.Win32.OpenFileDialog();
+                dialog.FileName = "BD_AIS_POL"; // Default file name
+                dialog.DefaultExt = ".mdf"; // Default file extension
+                dialog.Filter = "MSSQL (.mdf)|*.mdf"; // Filter files by extension
+
+                // Show open file dialog box
+                bool? result = dialog.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    // Open document
+                    InitialCatalog = dialog.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при выборе файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void OnOkCommandExecuted(object p)
         {
@@ -62,21 +72,12 @@ namespace WpfApplication.ViewModels
             {
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-                string con = "";
 
-                if(IsCheckedBoxCustomConnection)
-                {
-                    con = new String($"metadata=res://*/ModelDB.csdl|res://*/ModelDB.ssdl|res://*/ModelDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;{CustomConnectionString};App=EntityFramework&quot;");
-                }
-                else
-                {
-                    con = new String($"metadata=res://*/ModelDB.csdl|res://*/ModelDB.ssdl|res://*/ModelDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source={DataSource};Initial Catalog={InitialCatalog};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;");
-                
+                //var con = new String($"metadata=res://*/ModelDB.csdl|res://*/ModelDB.ssdl|res://*/ModelDB.msl;provider=System.Data.SqlClient;provider connection string=\"Data Source={DataSource};Initial Catalog={InitialCatalog};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework\"");
+                var con = new String($"metadata = res://*/ModelAISPOL.csdl|res://*/ModelAISPOL.ssdl|res://*/ModelAISPOL.msl;provider=System.Data.SqlClient;provider connection string=\"Data Source={DataSource};AttachDbFilename={InitialCatalog};Integrated Security=True;Connect Timeout=30;App=EntityFramework\"");
 
-                }
-
-                string myEncodedString = HttpUtility.HtmlDecode(con);
-                connectionStringsSection.ConnectionStrings["MsSqlForestEntities"].ConnectionString = myEncodedString;
+                //connectionStringsSection.ConnectionStrings["MsSqlForestEntities"].ConnectionString = myEncodedString;
+                connectionStringsSection.ConnectionStrings["BD_AIS_POLEntities"].ConnectionString = con;
 
                 config.Save();
                 ConfigurationManager.RefreshSection("connectionStrings");
@@ -92,7 +93,8 @@ namespace WpfApplication.ViewModels
         }
         private void SetTextBoxInfo()
         {
-            var connection = ConfigurationManager.ConnectionStrings["MsSqlForestEntities"].ConnectionString;
+            //var connection = ConfigurationManager.ConnectionStrings["MsSqlForestEntities"].ConnectionString;
+            var connection = ConfigurationManager.ConnectionStrings["BD_AIS_POLEntities"].ConnectionString;
             
             int found = connection.IndexOf("data source=", StringComparison.CurrentCultureIgnoreCase);
             if (found != -1)
@@ -102,10 +104,18 @@ namespace WpfApplication.ViewModels
                 DataSource = connection.Substring(found, last - found);
             }
 
-            found = connection.IndexOf("initial catalog=", StringComparison.CurrentCultureIgnoreCase);
+            //found = connection.IndexOf("initial catalog=", StringComparison.CurrentCultureIgnoreCase);
+            //if (found != -1)
+            //{
+            //    found += 16;
+            //    int last = connection.IndexOf(';', found);
+            //    InitialCatalog = connection.Substring(found, last - found);
+            //}
+
+            found = connection.IndexOf("AttachDbFilename=", StringComparison.CurrentCultureIgnoreCase);
             if (found != -1)
             {
-                found += 16;
+                found += 17;
                 int last = connection.IndexOf(';', found);
                 InitialCatalog = connection.Substring(found, last - found);
             }

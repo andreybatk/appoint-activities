@@ -19,13 +19,17 @@ namespace WpfApplication.Models
         /// <summary>
         /// Текущий элемент из БД
         /// </summary>
-        private MyTable _currentRow;
+        //private MyTable _currentRow;
+        private OS_INFO _currentRow;
 
-        public Activitiy4(MyTable currentRow)
+        //public Activitiy3(MyTable currentRow)
+        //{
+        //    _currentRow = currentRow;
+        //}
+        public Activitiy4(OS_INFO currentRow)
         {
             _currentRow = currentRow;
         }
-
         public void AppointActivitie()
         {
             _currentRow.PRVB = _prvb;

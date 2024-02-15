@@ -1,4 +1,5 @@
-﻿using WpfApplication.DB;
+﻿using System;
+using WpfApplication.DB;
 using WpfApplication.Infrastructure;
 
 namespace WpfApplication.Models
@@ -27,13 +28,17 @@ namespace WpfApplication.Models
         /// <summary>
         /// Текущий элемент из БД
         /// </summary>
-        private MyTable _currentRow;
+        //private MyTable _currentRow;
+        private OS_INFO _currentRow;
 
-        public Activitiy3(MyTable currentRow)
+        //public Activitiy3(MyTable currentRow)
+        //{
+        //    _currentRow = currentRow;
+        //}
+        public Activitiy3(OS_INFO currentRow)
         {
             _currentRow = currentRow;
         }
-
         public void AppointActivitie()
         {
             _currentRow.PRVB = _prvb;
@@ -137,19 +142,19 @@ namespace WpfApplication.Models
         }
         private int AppointMer2()
         {
-            if (double.Parse(_currentRow.NPDR) >= 0 && double.Parse(_currentRow.NPDR) < 1)
+            if (_currentRow.NPDR >= 0 && _currentRow.NPDR < 1)
             {
                 return 500;
             }
-            else if (double.Parse(_currentRow.NPDR) >= 1 && double.Parse(_currentRow.NPDR) < 1.5)
+            else if (_currentRow.NPDR >= 1 && _currentRow.NPDR < 1.5m)
             {
                 return 640;
             }
-            else if (double.Parse(_currentRow.NPDR) >= 1.5 && double.Parse(_currentRow.NPDR) < 2.5)
+            else if (_currentRow.NPDR >= 1.5m && _currentRow.NPDR < 2.5m)
             {
                 return 690;
             }
-            else if (double.Parse(_currentRow.NPDR) >= 2.5)
+            else if (_currentRow.NPDR >= 2.5m)
             {
                 return 660;
             }
@@ -158,11 +163,40 @@ namespace WpfApplication.Models
         }
         private void CalculatePol()
         {
-            _totalPol = double.Parse(_currentRow.POL1) + double.Parse(_currentRow.POL2) + double.Parse(_currentRow.POL3)
-                + double.Parse(_currentRow.POL4) + double.Parse(_currentRow.POL5) + double.Parse(_currentRow.POL6)
-                + double.Parse(_currentRow.POL7) + double.Parse(_currentRow.POL8) + double.Parse(_currentRow.POL9)
-                + double.Parse(_currentRow.POL10);
+            var pol = _currentRow.POL1 + _currentRow.POL2 + _currentRow.POL3
+                + _currentRow.POL4 + _currentRow.POL5 + _currentRow.POL6
+                + _currentRow.POL7 + _currentRow.POL8 + _currentRow.POL9
+                + _currentRow.POL10;
+            _totalPol = Convert.ToDouble(pol);
         }
+        //private int AppointMer2()
+        //{
+        //    if (double.Parse(_currentRow.NPDR) >= 0 && double.Parse(_currentRow.NPDR) < 1)
+        //    {
+        //        return 500;
+        //    }
+        //    else if (double.Parse(_currentRow.NPDR) >= 1 && double.Parse(_currentRow.NPDR) < 1.5)
+        //    {
+        //        return 640;
+        //    }
+        //    else if (double.Parse(_currentRow.NPDR) >= 1.5 && double.Parse(_currentRow.NPDR) < 2.5)
+        //    {
+        //        return 690;
+        //    }
+        //    else if (double.Parse(_currentRow.NPDR) >= 2.5)
+        //    {
+        //        return 660;
+        //    }
+
+        //    return 0;
+        //}
+        //private void CalculatePol()
+        //{
+        //    _totalPol = double.Parse(_currentRow.POL1) + double.Parse(_currentRow.POL2) + double.Parse(_currentRow.POL3)
+        //        + double.Parse(_currentRow.POL4) + double    .Parse(_currentRow.POL5) + double.Parse(_currentRow.POL6)
+        //        + double.Parse(_currentRow.POL7) + double.Parse(_currentRow.POL8) + double.Parse(_currentRow.POL9)
+        //        + double.Parse(_currentRow.POL10);
+        //}
     }
 }
 

@@ -14,13 +14,16 @@ namespace WpfApplication.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        private BindingList<MyTable> _data;
-        private MsSqlForestEntities _dbContext;
+        //private BindingList<MyTable> _data;
+        private BindingList<OS_INFO> _data;
+        //private MsSqlForestEntities _dbContext;
+        private BD_AIS_POLEntities _dbContext;
         private string _currentActivitieInfo;  
 
         public MainWindowViewModel()
         {
-            _dbContext = new MsSqlForestEntities();
+            //_dbContext = new MsSqlForestEntities();
+            _dbContext = new BD_AIS_POLEntities();
             Preparing();
 
             ChangeConectionCommand = new RelayCommand(OnChangeConectionCommandExecuted);
@@ -34,7 +37,8 @@ namespace WpfApplication.ViewModels
             
         }
 
-        public BindingList<MyTable> DataList { get => _data; set => Set(ref _data, value); }
+        //public BindingList<MyTable> DataList { get => _data; set => Set(ref _data, value); }
+        public BindingList<OS_INFO> DataList { get => _data; set => Set(ref _data, value); }
         public string CurrentActivitieInfo { get => _currentActivitieInfo; set => Set(ref _currentActivitieInfo, value); }
         
         public ICommand ConnectionInfoCommand { get; }
@@ -50,8 +54,10 @@ namespace WpfApplication.ViewModels
         {
             try
             {
-                _dbContext.MyTable.Load();
-                DataList = _dbContext.MyTable.Local.ToBindingList();
+                //_dbContext.MyTable.Load();
+                //DataList = _dbContext.MyTable.Local.ToBindingList();
+                _dbContext.OS_INFO.Load();
+                DataList = _dbContext.OS_INFO.Local.ToBindingList();
             }
             catch (Exception ex)
             {

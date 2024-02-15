@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_AIS_POLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OS_INFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADMR" Type="int" Nullable="false" />
+          <Property Name="MUNR" Type="int" Nullable="false" />
+          <Property Name="LX" Type="int" Nullable="false" />
+          <Property Name="LESN" Type="int" Nullable="false" />
+          <Property Name="GRL" Type="int" Nullable="false" />
+          <Property Name="KATL" Type="int" Nullable="false" />
+          <Property Name="AREND" Type="int" Nullable="false" />
+          <Property Name="KV" Type="int" Nullable="false" />
+          <Property Name="SKV" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="L_VIVOZ" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NVD" Type="int" Nullable="false" />
+          <Property Name="SVD" Type="decimal" Precision="19" Scale="1" Nullable="false" />
+          <Property Name="KATZ" Type="int" Nullable="false" />
+          <Property Name="SPRUB" Type="int" Nullable="false" />
+          <Property Name="DOLGP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OZU" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="HUM" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EKSP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KRUT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EROZ" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DEGRE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PRVB" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CPOR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PPOR" Type="int" Nullable="false" />
+          <Property Name="BON" Type="int" Nullable="false" />
+          <Property Name="TIPL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TLU" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ARUB" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PNI" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PNISOS" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DPN" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CUT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAXL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAXLIK" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SUX" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="XOZC" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS1" Type="int" Nullable="false" />
+          <Property Name="POR1" Type="int" Nullable="false" />
+          <Property Name="A1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL1" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR2" Type="int" Nullable="false" />
+          <Property Name="KS2" Type="int" Nullable="false" />
+          <Property Name="POR2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL2" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR3" Type="int" Nullable="false" />
+          <Property Name="KS3" Type="int" Nullable="false" />
+          <Property Name="POR3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL3" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR4" Type="int" Nullable="false" />
+          <Property Name="KS4" Type="int" Nullable="false" />
+          <Property Name="POR4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL4" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR5" Type="int" Nullable="false" />
+          <Property Name="KS5" Type="int" Nullable="false" />
+          <Property Name="POR5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL5" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR6" Type="int" Nullable="false" />
+          <Property Name="KS6" Type="int" Nullable="false" />
+          <Property Name="POR6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL6" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR7" Type="int" Nullable="false" />
+          <Property Name="KS7" Type="int" Nullable="false" />
+          <Property Name="POR7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL7" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR8" Type="int" Nullable="false" />
+          <Property Name="KS8" Type="int" Nullable="false" />
+          <Property Name="POR8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL8" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR9" Type="int" Nullable="false" />
+          <Property Name="KS9" Type="int" Nullable="false" />
+          <Property Name="POR9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL9" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP9" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR10" Type="int" Nullable="false" />
+          <Property Name="KS10" Type="int" Nullable="false" />
+          <Property Name="POR10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL10" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP10" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NPDR" Type="numeric" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="HPDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="APDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS1PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P1PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS2PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P2PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS3PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P3PDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OPDR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NPDL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P1PDL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P2PDL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P3PDL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MD1" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA11" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA12" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA13" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA14" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA15" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA16" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA17" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA18" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD2" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA21" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA22" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA23" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA24" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA25" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA26" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA27" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA28" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD3" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA31" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA32" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA33" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA34" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA35" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA36" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA37" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA38" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD4" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA41" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA42" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA43" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA44" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA45" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA46" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA47" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA48" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD5" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA51" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA52" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA53" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA54" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA55" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA56" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA57" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA58" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD6" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA61" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA62" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA63" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA64" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA65" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA66" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA67" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA68" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD7" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA71" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA72" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA73" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA74" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA75" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA76" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA77" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA78" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD8" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA81" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA82" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA83" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA84" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA85" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA86" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA87" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA88" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Gr_voz" Type="int" Nullable="false" />
+          <Property Name="Kl_voz" Type="int" Nullable="false" />
+          <Property Name="Kl_PO" Type="int" Nullable="false" />
+          <Property Name="MI_PRINX" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SP_GEOMETRY" Type="geography" />
+          <Property Name="MI_STYLE" Type="varchar" MaxLength="254" />
+        </EntityType>
+        <EntityContainer Name="BD_AIS_POLModelStoreContainer">
+          <EntitySet Name="OS_INFO" EntityType="Self.OS_INFO" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_AIS_POLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="OS_INFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADMR" Type="Int32" Nullable="false" />
+          <Property Name="MUNR" Type="Int32" Nullable="false" />
+          <Property Name="LX" Type="Int32" Nullable="false" />
+          <Property Name="LESN" Type="Int32" Nullable="false" />
+          <Property Name="GRL" Type="Int32" Nullable="false" />
+          <Property Name="KATL" Type="Int32" Nullable="false" />
+          <Property Name="AREND" Type="Int32" Nullable="false" />
+          <Property Name="KV" Type="Int32" Nullable="false" />
+          <Property Name="SKV" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="L_VIVOZ" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NVD" Type="Int32" Nullable="false" />
+          <Property Name="SVD" Type="Decimal" Precision="19" Scale="1" Nullable="false" />
+          <Property Name="KATZ" Type="Int32" Nullable="false" />
+          <Property Name="SPRUB" Type="Int32" Nullable="false" />
+          <Property Name="DOLGP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OZU" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="HUM" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EKSP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KRUT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EROZ" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DEGRE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PRVB" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MER3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RTK3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CPOR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PPOR" Type="Int32" Nullable="false" />
+          <Property Name="BON" Type="Int32" Nullable="false" />
+          <Property Name="TIPL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TLU" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ARUB" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PNI" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PNISOS" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DPN" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CUT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAXL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAXLIK" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SUX" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="XOZC" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS1" Type="Int32" Nullable="false" />
+          <Property Name="POR1" Type="Int32" Nullable="false" />
+          <Property Name="A1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL1" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR2" Type="Int32" Nullable="false" />
+          <Property Name="KS2" Type="Int32" Nullable="false" />
+          <Property Name="POR2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL2" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR3" Type="Int32" Nullable="false" />
+          <Property Name="KS3" Type="Int32" Nullable="false" />
+          <Property Name="POR3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL3" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR4" Type="Int32" Nullable="false" />
+          <Property Name="KS4" Type="Int32" Nullable="false" />
+          <Property Name="POR4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL4" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR5" Type="Int32" Nullable="false" />
+          <Property Name="KS5" Type="Int32" Nullable="false" />
+          <Property Name="POR5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL5" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR6" Type="Int32" Nullable="false" />
+          <Property Name="KS6" Type="Int32" Nullable="false" />
+          <Property Name="POR6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL6" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR7" Type="Int32" Nullable="false" />
+          <Property Name="KS7" Type="Int32" Nullable="false" />
+          <Property Name="POR7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL7" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR8" Type="Int32" Nullable="false" />
+          <Property Name="KS8" Type="Int32" Nullable="false" />
+          <Property Name="POR8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL8" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR9" Type="Int32" Nullable="false" />
+          <Property Name="KS9" Type="Int32" Nullable="false" />
+          <Property Name="POR9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL9" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP9" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JR10" Type="Int32" Nullable="false" />
+          <Property Name="KS10" Type="Int32" Nullable="false" />
+          <Property Name="POR10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="A10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="H10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="D10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KT10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PR10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="POL10" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="SPS10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ZAP10" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NPDR" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="HPDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="APDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS1PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P1PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS2PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P2PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="KS3PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P3PDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OPDR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NPDL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P1PDL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P2PDL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P3PDL" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MD1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA11" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA12" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA13" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA14" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA15" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA16" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA17" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA18" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD2" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA21" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA22" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA23" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA24" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA25" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA26" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA27" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA28" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD3" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA31" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA32" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA33" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA34" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA35" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA36" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA37" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA38" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD4" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA41" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA42" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA43" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA44" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA45" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA46" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA47" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA48" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD5" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA51" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA52" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA53" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA54" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA55" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA56" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA57" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA58" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD6" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA61" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA62" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA63" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA64" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA65" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA66" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA67" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA68" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD7" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA71" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA72" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA73" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA74" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA75" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA76" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA77" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA78" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="MD8" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DA81" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA82" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA83" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA84" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA85" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA86" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA87" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="DA88" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Gr_voz" Type="Int32" Nullable="false" />
+          <Property Name="Kl_voz" Type="Int32" Nullable="false" />
+          <Property Name="Kl_PO" Type="Int32" Nullable="false" />
+          <Property Name="MI_PRINX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SP_GEOMETRY" Type="Geography" />
+          <Property Name="MI_STYLE" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BD_AIS_POLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OS_INFO" EntityType="Self.OS_INFO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_AIS_POLModelStoreContainer" CdmEntityContainer="BD_AIS_POLEntities">
+          <EntitySetMapping Name="OS_INFO">
+            <EntityTypeMapping TypeName="BD_AIS_POLModel.OS_INFO">
+              <MappingFragment StoreEntitySet="OS_INFO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADMR" ColumnName="ADMR" />
+                <ScalarProperty Name="MUNR" ColumnName="MUNR" />
+                <ScalarProperty Name="LX" ColumnName="LX" />
+                <ScalarProperty Name="LESN" ColumnName="LESN" />
+                <ScalarProperty Name="GRL" ColumnName="GRL" />
+                <ScalarProperty Name="KATL" ColumnName="KATL" />
+                <ScalarProperty Name="AREND" ColumnName="AREND" />
+                <ScalarProperty Name="KV" ColumnName="KV" />
+                <ScalarProperty Name="SKV" ColumnName="SKV" />
+                <ScalarProperty Name="L_VIVOZ" ColumnName="L_VIVOZ" />
+                <ScalarProperty Name="NVD" ColumnName="NVD" />
+                <ScalarProperty Name="SVD" ColumnName="SVD" />
+                <ScalarProperty Name="KATZ" ColumnName="KATZ" />
+                <ScalarProperty Name="SPRUB" ColumnName="SPRUB" />
+                <ScalarProperty Name="DOLGP" ColumnName="DOLGP" />
+                <ScalarProperty Name="OZU" ColumnName="OZU" />
+                <ScalarProperty Name="HUM" ColumnName="HUM" />
+                <ScalarProperty Name="EKSP" ColumnName="EKSP" />
+                <ScalarProperty Name="KRUT" ColumnName="KRUT" />
+                <ScalarProperty Name="EROZ" ColumnName="EROZ" />
+                <ScalarProperty Name="DEGRE" ColumnName="DEGRE" />
+                <ScalarProperty Name="MER1" ColumnName="MER1" />
+                <ScalarProperty Name="PRVB" ColumnName="PRVB" />
+                <ScalarProperty Name="RTK1" ColumnName="RTK1" />
+                <ScalarProperty Name="MER2" ColumnName="MER2" />
+                <ScalarProperty Name="RTK2" ColumnName="RTK2" />
+                <ScalarProperty Name="MER3" ColumnName="MER3" />
+                <ScalarProperty Name="RTK3" ColumnName="RTK3" />
+                <ScalarProperty Name="CPOR" ColumnName="CPOR" />
+                <ScalarProperty Name="PPOR" ColumnName="PPOR" />
+                <ScalarProperty Name="BON" ColumnName="BON" />
+                <ScalarProperty Name="TIPL" ColumnName="TIPL" />
+                <ScalarProperty Name="TLU" ColumnName="TLU" />
+                <ScalarProperty Name="ARUB" ColumnName="ARUB" />
+                <ScalarProperty Name="PNI" ColumnName="PNI" />
+                <ScalarProperty Name="PNISOS" ColumnName="PNISOS" />
+                <ScalarProperty Name="DPN" ColumnName="DPN" />
+                <ScalarProperty Name="CUT" ColumnName="CUT" />
+                <ScalarProperty Name="ZAXL" ColumnName="ZAXL" />
+                <ScalarProperty Name="ZAXLIK" ColumnName="ZAXLIK" />
+                <ScalarProperty Name="SUX" ColumnName="SUX" />
+                <ScalarProperty Name="XOZC" ColumnName="XOZC" />
+                <ScalarProperty Name="JR1" ColumnName="JR1" />
+                <ScalarProperty Name="KS1" ColumnName="KS1" />
+                <ScalarProperty Name="POR1" ColumnName="POR1" />
+                <ScalarProperty Name="A1" ColumnName="A1" />
+                <ScalarProperty Name="H1" ColumnName="H1" />
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="KT1" ColumnName="KT1" />
+                <ScalarProperty Name="PR1" ColumnName="PR1" />
+                <ScalarProperty Name="POL1" ColumnName="POL1" />
+                <ScalarProperty Name="SPS1" ColumnName="SPS1" />
+                <ScalarProperty Name="ZAP1" ColumnName="ZAP1" />
+                <ScalarProperty Name="JR2" ColumnName="JR2" />
+                <ScalarProperty Name="KS2" ColumnName="KS2" />
+                <ScalarProperty Name="POR2" ColumnName="POR2" />
+                <ScalarProperty Name="A2" ColumnName="A2" />
+                <ScalarProperty Name="H2" ColumnName="H2" />
+                <ScalarProperty Name="D2" ColumnName="D2" />
+                <ScalarProperty Name="KT2" ColumnName="KT2" />
+                <ScalarProperty Name="PR2" ColumnName="PR2" />
+                <ScalarProperty Name="POL2" ColumnName="POL2" />
+                <ScalarProperty Name="SPS2" ColumnName="SPS2" />
+                <ScalarProperty Name="ZAP2" ColumnName="ZAP2" />
+                <ScalarProperty Name="JR3" ColumnName="JR3" />
+                <ScalarProperty Name="KS3" ColumnName="KS3" />
+                <ScalarProperty Name="POR3" ColumnName="POR3" />
+                <ScalarProperty Name="A3" ColumnName="A3" />
+                <ScalarProperty Name="H3" ColumnName="H3" />
+                <ScalarProperty Name="D3" ColumnName="D3" />
+                <ScalarProperty Name="KT3" ColumnName="KT3" />
+                <ScalarProperty Name="PR3" ColumnName="PR3" />
+                <ScalarProperty Name="POL3" ColumnName="POL3" />
+                <ScalarProperty Name="SPS3" ColumnName="SPS3" />
+                <ScalarProperty Name="ZAP3" ColumnName="ZAP3" />
+                <ScalarProperty Name="JR4" ColumnName="JR4" />
+                <ScalarProperty Name="KS4" ColumnName="KS4" />
+                <ScalarProperty Name="POR4" ColumnName="POR4" />
+                <ScalarProperty Name="A4" ColumnName="A4" />
+                <ScalarProperty Name="H4" ColumnName="H4" />
+                <ScalarProperty Name="D4" ColumnName="D4" />
+                <ScalarProperty Name="KT4" ColumnName="KT4" />
+                <ScalarProperty Name="PR4" ColumnName="PR4" />
+                <ScalarProperty Name="POL4" ColumnName="POL4" />
+                <ScalarProperty Name="SPS4" ColumnName="SPS4" />
+                <ScalarProperty Name="ZAP4" ColumnName="ZAP4" />
+                <ScalarProperty Name="JR5" ColumnName="JR5" />
+                <ScalarProperty Name="KS5" ColumnName="KS5" />
+                <ScalarProperty Name="POR5" ColumnName="POR5" />
+                <ScalarProperty Name="A5" ColumnName="A5" />
+                <ScalarProperty Name="H5" ColumnName="H5" />
+                <ScalarProperty Name="D5" ColumnName="D5" />
+                <ScalarProperty Name="KT5" ColumnName="KT5" />
+                <ScalarProperty Name="PR5" ColumnName="PR5" />
+                <ScalarProperty Name="POL5" ColumnName="POL5" />
+                <ScalarProperty Name="SPS5" ColumnName="SPS5" />
+                <ScalarProperty Name="ZAP5" ColumnName="ZAP5" />
+                <ScalarProperty Name="JR6" ColumnName="JR6" />
+                <ScalarProperty Name="KS6" ColumnName="KS6" />
+                <ScalarProperty Name="POR6" ColumnName="POR6" />
+                <ScalarProperty Name="A6" ColumnName="A6" />
+                <ScalarProperty Name="H6" ColumnName="H6" />
+                <ScalarProperty Name="D6" ColumnName="D6" />
+                <ScalarProperty Name="KT6" ColumnName="KT6" />
+                <ScalarProperty Name="PR6" ColumnName="PR6" />
+                <ScalarProperty Name="POL6" ColumnName="POL6" />
+                <ScalarProperty Name="SPS6" ColumnName="SPS6" />
+                <ScalarProperty Name="ZAP6" ColumnName="ZAP6" />
+                <ScalarProperty Name="JR7" ColumnName="JR7" />
+                <ScalarProperty Name="KS7" ColumnName="KS7" />
+                <ScalarProperty Name="POR7" ColumnName="POR7" />
+                <ScalarProperty Name="A7" ColumnName="A7" />
+                <ScalarProperty Name="H7" ColumnName="H7" />
+                <ScalarProperty Name="D7" ColumnName="D7" />
+                <ScalarProperty Name="KT7" ColumnName="KT7" />
+                <ScalarProperty Name="PR7" ColumnName="PR7" />
+                <ScalarProperty Name="POL7" ColumnName="POL7" />
+                <ScalarProperty Name="SPS7" ColumnName="SPS7" />
+                <ScalarProperty Name="ZAP7" ColumnName="ZAP7" />
+                <ScalarProperty Name="JR8" ColumnName="JR8" />
+                <ScalarProperty Name="KS8" ColumnName="KS8" />
+                <ScalarProperty Name="POR8" ColumnName="POR8" />
+                <ScalarProperty Name="A8" ColumnName="A8" />
+                <ScalarProperty Name="H8" ColumnName="H8" />
+                <ScalarProperty Name="D8" ColumnName="D8" />
+                <ScalarProperty Name="KT8" ColumnName="KT8" />
+                <ScalarProperty Name="PR8" ColumnName="PR8" />
+                <ScalarProperty Name="POL8" ColumnName="POL8" />
+                <ScalarProperty Name="SPS8" ColumnName="SPS8" />
+                <ScalarProperty Name="ZAP8" ColumnName="ZAP8" />
+                <ScalarProperty Name="JR9" ColumnName="JR9" />
+                <ScalarProperty Name="KS9" ColumnName="KS9" />
+                <ScalarProperty Name="POR9" ColumnName="POR9" />
+                <ScalarProperty Name="A9" ColumnName="A9" />
+                <ScalarProperty Name="H9" ColumnName="H9" />
+                <ScalarProperty Name="D9" ColumnName="D9" />
+                <ScalarProperty Name="KT9" ColumnName="KT9" />
+                <ScalarProperty Name="PR9" ColumnName="PR9" />
+                <ScalarProperty Name="POL9" ColumnName="POL9" />
+                <ScalarProperty Name="SPS9" ColumnName="SPS9" />
+                <ScalarProperty Name="ZAP9" ColumnName="ZAP9" />
+                <ScalarProperty Name="JR10" ColumnName="JR10" />
+                <ScalarProperty Name="KS10" ColumnName="KS10" />
+                <ScalarProperty Name="POR10" ColumnName="POR10" />
+                <ScalarProperty Name="A10" ColumnName="A10" />
+                <ScalarProperty Name="H10" ColumnName="H10" />
+                <ScalarProperty Name="D10" ColumnName="D10" />
+                <ScalarProperty Name="KT10" ColumnName="KT10" />
+                <ScalarProperty Name="PR10" ColumnName="PR10" />
+                <ScalarProperty Name="POL10" ColumnName="POL10" />
+                <ScalarProperty Name="SPS10" ColumnName="SPS10" />
+                <ScalarProperty Name="ZAP10" ColumnName="ZAP10" />
+                <ScalarProperty Name="NPDR" ColumnName="NPDR" />
+                <ScalarProperty Name="HPDR" ColumnName="HPDR" />
+                <ScalarProperty Name="APDR" ColumnName="APDR" />
+                <ScalarProperty Name="KS1PDR" ColumnName="KS1PDR" />
+                <ScalarProperty Name="P1PDR" ColumnName="P1PDR" />
+                <ScalarProperty Name="KS2PDR" ColumnName="KS2PDR" />
+                <ScalarProperty Name="P2PDR" ColumnName="P2PDR" />
+                <ScalarProperty Name="KS3PDR" ColumnName="KS3PDR" />
+                <ScalarProperty Name="P3PDR" ColumnName="P3PDR" />
+                <ScalarProperty Name="OPDR" ColumnName="OPDR" />
+                <ScalarProperty Name="NPDL" ColumnName="NPDL" />
+                <ScalarProperty Name="P1PDL" ColumnName="P1PDL" />
+                <ScalarProperty Name="P2PDL" ColumnName="P2PDL" />
+                <ScalarProperty Name="P3PDL" ColumnName="P3PDL" />
+                <ScalarProperty Name="MD1" ColumnName="MD1" />
+                <ScalarProperty Name="DA11" ColumnName="DA11" />
+                <ScalarProperty Name="DA12" ColumnName="DA12" />
+                <ScalarProperty Name="DA13" ColumnName="DA13" />
+                <ScalarProperty Name="DA14" ColumnName="DA14" />
+                <ScalarProperty Name="DA15" ColumnName="DA15" />
+                <ScalarProperty Name="DA16" ColumnName="DA16" />
+                <ScalarProperty Name="DA17" ColumnName="DA17" />
+                <ScalarProperty Name="DA18" ColumnName="DA18" />
+                <ScalarProperty Name="MD2" ColumnName="MD2" />
+                <ScalarProperty Name="DA21" ColumnName="DA21" />
+                <ScalarProperty Name="DA22" ColumnName="DA22" />
+                <ScalarProperty Name="DA23" ColumnName="DA23" />
+                <ScalarProperty Name="DA24" ColumnName="DA24" />
+                <ScalarProperty Name="DA25" ColumnName="DA25" />
+                <ScalarProperty Name="DA26" ColumnName="DA26" />
+                <ScalarProperty Name="DA27" ColumnName="DA27" />
+                <ScalarProperty Name="DA28" ColumnName="DA28" />
+                <ScalarProperty Name="MD3" ColumnName="MD3" />
+                <ScalarProperty Name="DA31" ColumnName="DA31" />
+                <ScalarProperty Name="DA32" ColumnName="DA32" />
+                <ScalarProperty Name="DA33" ColumnName="DA33" />
+                <ScalarProperty Name="DA34" ColumnName="DA34" />
+                <ScalarProperty Name="DA35" ColumnName="DA35" />
+                <ScalarProperty Name="DA36" ColumnName="DA36" />
+                <ScalarProperty Name="DA37" ColumnName="DA37" />
+                <ScalarProperty Name="DA38" ColumnName="DA38" />
+                <ScalarProperty Name="MD4" ColumnName="MD4" />
+                <ScalarProperty Name="DA41" ColumnName="DA41" />
+                <ScalarProperty Name="DA42" ColumnName="DA42" />
+                <ScalarProperty Name="DA43" ColumnName="DA43" />
+                <ScalarProperty Name="DA44" ColumnName="DA44" />
+                <ScalarProperty Name="DA45" ColumnName="DA45" />
+                <ScalarProperty Name="DA46" ColumnName="DA46" />
+                <ScalarProperty Name="DA47" ColumnName="DA47" />
+                <ScalarProperty Name="DA48" ColumnName="DA48" />
+                <ScalarProperty Name="MD5" ColumnName="MD5" />
+                <ScalarProperty Name="DA51" ColumnName="DA51" />
+                <ScalarProperty Name="DA52" ColumnName="DA52" />
+                <ScalarProperty Name="DA53" ColumnName="DA53" />
+                <ScalarProperty Name="DA54" ColumnName="DA54" />
+                <ScalarProperty Name="DA55" ColumnName="DA55" />
+                <ScalarProperty Name="DA56" ColumnName="DA56" />
+                <ScalarProperty Name="DA57" ColumnName="DA57" />
+                <ScalarProperty Name="DA58" ColumnName="DA58" />
+                <ScalarProperty Name="MD6" ColumnName="MD6" />
+                <ScalarProperty Name="DA61" ColumnName="DA61" />
+                <ScalarProperty Name="DA62" ColumnName="DA62" />
+                <ScalarProperty Name="DA63" ColumnName="DA63" />
+                <ScalarProperty Name="DA64" ColumnName="DA64" />
+                <ScalarProperty Name="DA65" ColumnName="DA65" />
+                <ScalarProperty Name="DA66" ColumnName="DA66" />
+                <ScalarProperty Name="DA67" ColumnName="DA67" />
+                <ScalarProperty Name="DA68" ColumnName="DA68" />
+                <ScalarProperty Name="MD7" ColumnName="MD7" />
+                <ScalarProperty Name="DA71" ColumnName="DA71" />
+                <ScalarProperty Name="DA72" ColumnName="DA72" />
+                <ScalarProperty Name="DA73" ColumnName="DA73" />
+                <ScalarProperty Name="DA74" ColumnName="DA74" />
+                <ScalarProperty Name="DA75" ColumnName="DA75" />
+                <ScalarProperty Name="DA76" ColumnName="DA76" />
+                <ScalarProperty Name="DA77" ColumnName="DA77" />
+                <ScalarProperty Name="DA78" ColumnName="DA78" />
+                <ScalarProperty Name="MD8" ColumnName="MD8" />
+                <ScalarProperty Name="DA81" ColumnName="DA81" />
+                <ScalarProperty Name="DA82" ColumnName="DA82" />
+                <ScalarProperty Name="DA83" ColumnName="DA83" />
+                <ScalarProperty Name="DA84" ColumnName="DA84" />
+                <ScalarProperty Name="DA85" ColumnName="DA85" />
+                <ScalarProperty Name="DA86" ColumnName="DA86" />
+                <ScalarProperty Name="DA87" ColumnName="DA87" />
+                <ScalarProperty Name="DA88" ColumnName="DA88" />
+                <ScalarProperty Name="Gr_voz" ColumnName="Gr_voz" />
+                <ScalarProperty Name="Kl_voz" ColumnName="Kl_voz" />
+                <ScalarProperty Name="Kl_PO" ColumnName="Kl_PO" />
+                <ScalarProperty Name="MI_PRINX" ColumnName="MI_PRINX" />
+                <ScalarProperty Name="SP_GEOMETRY" ColumnName="SP_GEOMETRY" />
+                <ScalarProperty Name="MI_STYLE" ColumnName="MI_STYLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
