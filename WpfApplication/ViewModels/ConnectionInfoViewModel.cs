@@ -5,7 +5,7 @@ using WpfApplication.Views.Windows;
 
 namespace WpfApplication.ViewModels
 {
-    class ConnectionInfoViewModel : ViewModel
+    internal class ConnectionInfoViewModel : ViewModel
     {
         private string _info;
         private ConnectionInfo _window;

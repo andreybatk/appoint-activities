@@ -1,5 +1,4 @@
 ﻿using ExcelParser.Models;
-using System;
 using System.Collections.Generic;
 
 namespace ExcelParser
@@ -7,12 +6,11 @@ namespace ExcelParser
     /// <summary>
     /// Достижение максимальной продуктивности насаждения для ведения лесопромышленной деятельности, путем рубок древесины по диаметру.
     /// </summary>
-    class Activitie5 : IActivitie
+    internal class Activitie5 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
         private int _currentRow;
-
         /// <summary>
         /// Общая полнота
         /// </summary>
@@ -192,7 +190,6 @@ namespace ExcelParser
             {
                 activitieOne = 55; // заключительный прием выборочных рубок
                 prvb = 70; // Процент выборки 70%
-
 
                 if (_jr2 == 0)
                 {

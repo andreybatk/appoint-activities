@@ -19,7 +19,7 @@ namespace ExcelParser
         public Excel.Workbook Workbook;
 
         public bool Open(string filePath)
-        {     
+        {
             try
             {
                 if (File.Exists(filePath))

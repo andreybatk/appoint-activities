@@ -31,10 +31,6 @@ namespace WpfApplication.Models
         //private MyTable _currentRow;
         private OS_INFO _currentRow;
 
-        //public Activitiy3(MyTable currentRow)
-        //{
-        //    _currentRow = currentRow;
-        //}
         public Activitiy5(OS_INFO currentRow)
         {
             _currentRow = currentRow;
@@ -171,33 +167,5 @@ namespace WpfApplication.Models
                 + _currentRow.POL10;
             _totalPol = Convert.ToDouble(pol);
         }
-        //private int AppointMer2()
-        //{
-        //    if (double.Parse(_currentRow.NPDR) >= 0 && double.Parse(_currentRow.NPDR) < 1)
-        //    {
-        //        return 500;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 1 && double.Parse(_currentRow.NPDR) < 1.5)
-        //    {
-        //        return 640;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 1.5 && double.Parse(_currentRow.NPDR) < 2.5)
-        //    {
-        //        return 690;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 2.5)
-        //    {
-        //        return 660;
-        //    }
-
-        //    return 0;
-        //}
-        //private void CalculatePol()
-        //{
-        //    _totalPol = double.Parse(_currentRow.POL1) + double.Parse(_currentRow.POL2) + double.Parse(_currentRow.POL3)
-        //        + double.Parse(_currentRow.POL4) + double    .Parse(_currentRow.POL5) + double.Parse(_currentRow.POL6)
-        //        + double.Parse(_currentRow.POL7) + double.Parse(_currentRow.POL8) + double.Parse(_currentRow.POL9)
-        //        + double.Parse(_currentRow.POL10);
-        //}
     }
 }

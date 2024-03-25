@@ -11,6 +11,9 @@ namespace ExcelParser
 {
     internal class ExcelParser
     {
+        /// <summary>
+        /// Путь к файлу
+        /// </summary>
         private readonly string _filePath;
         /// <summary>
         /// Показывать прогресс каждые _numberRowsForProgress строк
@@ -35,7 +38,7 @@ namespace ExcelParser
 
         public ExcelParser(string filePath)
         {
-            this._filePath = filePath;
+            _filePath = filePath;
         }
 
         public void Start()
@@ -68,10 +71,10 @@ namespace ExcelParser
 
                             int rowsCount = rows.Count;
                             int columnsCount = colums.Count;
-                            //Получение нужных столбцов
+
                             for (int j = 1; j <= columnsCount; j++)
                             {
-                                Excel.Range cellRange = usedRange.Cells[1, j]; //row: 1 column: j
+                                Excel.Range cellRange = usedRange.Cells[1, j];
                                 string cellText = (cellRange == null || cellRange.Value2 == null) ? null :
                                                     (cellRange as Excel.Range).Value2.ToString();
 
@@ -79,16 +82,16 @@ namespace ExcelParser
                                 if (Columns.ColumnsForFilling.Contains(cellText)) { _foundColumnsForFilling.Add(cellText, j); }
                                 if (Columns.RequiredPolColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
                                 if (Columns.RequiredJrColumns.Contains(cellText)) { _foundRequiredColumns.Add(cellText, j); }
-                                
+
                             }
 
                             StatusColumns();
                             PrintMessage.PrintSuccessMessage($"Началась обработка! Необходимо обработать: {rowsCount} строк. Выделено потоков: {_processorCount}");
-                            
+
                             Stopwatch watchTimer = new Stopwatch();
                             watchTimer.Start();
                             var options = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
-                            
+
                             Parallel.For(2, rowsCount + 1, options, i =>
                             {
                                 IActivitie activitie = new Activitie6(helper, _foundColumnsForFilling, i);
@@ -109,7 +112,7 @@ namespace ExcelParser
                                     _rowsExecutedCount += _rowsForProgressCount;
                                     Console.WriteLine($"Поток: #{Thread.CurrentThread.ManagedThreadId}. Прогресс: {_rowsExecutedCount}/{rowsCount} ");
                                 }
-                               
+
                                 if (showProgress && _rowsExecutedCount == 1000)
                                 {
                                     TimeSpan tempTimeSpan = watchTimer.Elapsed;
@@ -138,15 +141,8 @@ namespace ExcelParser
         }
         private void StatusColumns()
         {
-            //PrintMessage.PrintSuccessMessage($"Найдено обрабатываемых столбцов: {_foundRequiredColumns.Count} из необходимых {Columns.RequiredColumns.Count}");
             PrintMessage.PrintSuccessMessage($"Найдено столбцов для установления значений: {_foundColumnsForFilling.Count} из необходимых {Columns.ColumnsForFilling.Count}");
 
-            //if (_foundRequiredColumns.Count != Columns.RequiredColumns.Count)
-            //{
-            //    PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных обрабатываемых и необходимых столбцов!\n" +
-            //    $"Чтобы продолжить работу нажмите \"Enter\"");
-            //    Console.ReadKey();
-            //}
             if (_foundColumnsForFilling.Count != Columns.ColumnsForFilling.Count)
             {
                 PrintMessage.PrintWarningMessage($"ВНИМАНИЕ! Несовпадение найденных столбцов для установления значений и необходимых столбцов!\n" +

@@ -14,15 +14,12 @@ namespace WpfApplication.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        //private BindingList<MyTable> _data;
         private BindingList<OS_INFO> _data;
-        //private MsSqlForestEntities _dbContext;
         private BD_AIS_POLEntities _dbContext;
-        private string _currentActivitieInfo;  
+        private string _currentActivitieInfo;
 
         public MainWindowViewModel()
         {
-            //_dbContext = new MsSqlForestEntities();
             _dbContext = new BD_AIS_POLEntities();
             Preparing();
 
@@ -34,13 +31,11 @@ namespace WpfApplication.ViewModels
             Activitie4Command = new RelayCommand(OnActivitie4CommandExecuted);
             Activitie5Command = new RelayCommand(OnActivitie5CommandExecuted);
             Activitie6Command = new RelayCommand(OnActivitie6CommandExecuted);
-            
+
         }
 
-        //public BindingList<MyTable> DataList { get => _data; set => Set(ref _data, value); }
         public BindingList<OS_INFO> DataList { get => _data; set => Set(ref _data, value); }
         public string CurrentActivitieInfo { get => _currentActivitieInfo; set => Set(ref _currentActivitieInfo, value); }
-        
         public ICommand ConnectionInfoCommand { get; }
         public ICommand ChangeConectionCommand { get; }
         public ICommand ActivitieCommand { get; }
@@ -54,17 +49,14 @@ namespace WpfApplication.ViewModels
         {
             try
             {
-                //_dbContext.MyTable.Load();
-                //DataList = _dbContext.MyTable.Local.ToBindingList();
                 _dbContext.OS_INFO.Load();
                 DataList = _dbContext.OS_INFO.Local.ToBindingList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при загрузке базы данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            } 
+            }
         }
-
         private void OnConnectionInfoCommandExecuted(object p)
         {
             try
@@ -200,7 +192,7 @@ namespace WpfApplication.ViewModels
             window.DataContext = windowViewModel;
             window.ShowDialog();
 
-            if(window.DialogResult.Value)
+            if (window.DialogResult.Value)
             {
                 Application.Current.Shutdown();
             }

@@ -6,12 +6,11 @@ namespace ExcelParser
     /// <summary>
     /// Чересполосное пасечное ведение лесного хозяйства.
     /// </summary>
-    class Activitie4 : IActivitie
+    internal class Activitie4 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
         private int _currentRow;
-       
         /// <summary>
         /// Категория защитности
         /// </summary>

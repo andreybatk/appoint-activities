@@ -6,12 +6,11 @@ namespace ExcelParser
     /// <summary>
     /// Третий сценарий назначения мероприятий - максимально лесокультурный эффект
     /// </summary>
-    class Activitie3 : IActivitie
+    internal class Activitie3 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
         private int _currentRow;
-
         /// <summary>
         /// Общая полнота
         /// </summary>
@@ -165,14 +164,11 @@ namespace ExcelParser
                 }
             }
         }
-
         private (int activitieOne, int activitieTwo, int prvb) AppointActivities()
         {
             int activitieOne = 0;
             int prvb = 0;
             int activitieTwo = 0;
-
-            //проверить что ресулт сохраняет правильный значения после изменений интов
 
             if (_grvoz == 4 || _grvoz == 5) // Выбираем спелые и перестойные насаждения 
             {
@@ -286,4 +282,3 @@ namespace ExcelParser
         }
     }
 }
-

@@ -31,26 +31,22 @@ namespace WpfApplication.Models
         //private MyTable _currentRow;
         private OS_INFO _currentRow;
 
-        //public Activitiy3(MyTable currentRow)
-        //{
-        //    _currentRow = currentRow;
-        //}
         public Activitiy3(OS_INFO currentRow)
         {
             _currentRow = currentRow;
         }
+
         public void AppointActivitie()
         {
             _currentRow.PRVB = _prvb;
             _currentRow.MER1 = _mer1;
             _currentRow.MER2 = _mer2;
         }
-
         public void CalculateActivitie()
         {
-            if (_currentRow.Gr_voz == 4 || _currentRow.Gr_voz == 5) // Выбираем спелые и перестойные насаждения 
+            if (_currentRow.Gr_voz == 4 || _currentRow.Gr_voz == 5)
             {
-                if (_currentRow.KATL == 80) //эксплаутационные
+                if (_currentRow.KATL == 80)
                 {
                     if (_currentRow.OZU != 0) return;
 
@@ -169,34 +165,5 @@ namespace WpfApplication.Models
                 + _currentRow.POL10;
             _totalPol = Convert.ToDouble(pol);
         }
-        //private int AppointMer2()
-        //{
-        //    if (double.Parse(_currentRow.NPDR) >= 0 && double.Parse(_currentRow.NPDR) < 1)
-        //    {
-        //        return 500;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 1 && double.Parse(_currentRow.NPDR) < 1.5)
-        //    {
-        //        return 640;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 1.5 && double.Parse(_currentRow.NPDR) < 2.5)
-        //    {
-        //        return 690;
-        //    }
-        //    else if (double.Parse(_currentRow.NPDR) >= 2.5)
-        //    {
-        //        return 660;
-        //    }
-
-        //    return 0;
-        //}
-        //private void CalculatePol()
-        //{
-        //    _totalPol = double.Parse(_currentRow.POL1) + double.Parse(_currentRow.POL2) + double.Parse(_currentRow.POL3)
-        //        + double.Parse(_currentRow.POL4) + double    .Parse(_currentRow.POL5) + double.Parse(_currentRow.POL6)
-        //        + double.Parse(_currentRow.POL7) + double.Parse(_currentRow.POL8) + double.Parse(_currentRow.POL9)
-        //        + double.Parse(_currentRow.POL10);
-        //}
     }
 }
-

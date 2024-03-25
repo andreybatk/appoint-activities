@@ -1,6 +1,6 @@
 ﻿namespace WpfApplication.Infrastructure
 {
-    interface IActivitie
+    internal interface IActivitie
     {
         void AppointActivitie();
         void CalculateActivitie();

@@ -6,12 +6,11 @@ namespace ExcelParser
     /// <summary>
     /// Второй сценарий назначения мероприятий - выборочное хозяйство
     /// </summary>
-    class Activitie2 : IActivitie
+    internal class Activitie2 : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
         private int _currentRow;
-
         /// <summary>
         /// Общая полнота
         /// </summary>
@@ -281,4 +280,3 @@ namespace ExcelParser
         }
     }
 }
-

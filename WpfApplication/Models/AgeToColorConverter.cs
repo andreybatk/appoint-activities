@@ -9,7 +9,6 @@ namespace WpfApplication.Models
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Все проверки для краткости выкинул
             return (int)value <= 16 ?
                 new SolidColorBrush(Colors.OrangeRed)
                 : new SolidColorBrush(Colors.White);

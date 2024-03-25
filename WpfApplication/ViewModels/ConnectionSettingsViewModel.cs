@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Text;
-using System.Web;
 using System.Windows;
 using System.Windows.Input;
 using WpfApplication.Infrastructure.Commands;
@@ -26,6 +24,7 @@ namespace WpfApplication.ViewModels
             FilePathCommand = new RelayCommand(OnFilePathCommandExecuted);
             SetTextBoxInfo();
         }
+
         public bool IsEnableTextBoxCustomConnection { get => _isEnableTextBoxCustomConnection; set => Set(ref _isEnableTextBoxCustomConnection, value); }
         public bool IsEnableTextBox { get => _isEnableTextBox; set => Set(ref _isEnableTextBox, value); }
         public string DataSource { get => _dataSource; set => Set(ref _dataSource, value); }
@@ -45,19 +44,15 @@ namespace WpfApplication.ViewModels
         {
             try
             {
-                // Configure open file dialog box
                 var dialog = new Microsoft.Win32.OpenFileDialog();
-                dialog.FileName = "BD_AIS_POL"; // Default file name
-                dialog.DefaultExt = ".mdf"; // Default file extension
-                dialog.Filter = "MSSQL (.mdf)|*.mdf"; // Filter files by extension
+                dialog.FileName = "BD_AIS_POL";
+                dialog.DefaultExt = ".mdf";
+                dialog.Filter = "MSSQL (.mdf)|*.mdf";
 
-                // Show open file dialog box
                 bool? result = dialog.ShowDialog();
 
-                // Process open file dialog box results
                 if (result == true)
                 {
-                    // Open document
                     InitialCatalog = dialog.FileName;
                 }
             }
@@ -73,10 +68,8 @@ namespace WpfApplication.ViewModels
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
 
-                //var con = new String($"metadata=res://*/ModelDB.csdl|res://*/ModelDB.ssdl|res://*/ModelDB.msl;provider=System.Data.SqlClient;provider connection string=\"Data Source={DataSource};Initial Catalog={InitialCatalog};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework\"");
                 var con = new String($"metadata = res://*/ModelAISPOL.csdl|res://*/ModelAISPOL.ssdl|res://*/ModelAISPOL.msl;provider=System.Data.SqlClient;provider connection string=\"Data Source={DataSource};AttachDbFilename={InitialCatalog};Integrated Security=True;Connect Timeout=30;App=EntityFramework\"");
 
-                //connectionStringsSection.ConnectionStrings["MsSqlForestEntities"].ConnectionString = myEncodedString;
                 connectionStringsSection.ConnectionStrings["BD_AIS_POLEntities"].ConnectionString = con;
 
                 config.Save();
@@ -93,9 +86,8 @@ namespace WpfApplication.ViewModels
         }
         private void SetTextBoxInfo()
         {
-            //var connection = ConfigurationManager.ConnectionStrings["MsSqlForestEntities"].ConnectionString;
             var connection = ConfigurationManager.ConnectionStrings["BD_AIS_POLEntities"].ConnectionString;
-            
+
             int found = connection.IndexOf("data source=", StringComparison.CurrentCultureIgnoreCase);
             if (found != -1)
             {
@@ -103,14 +95,6 @@ namespace WpfApplication.ViewModels
                 int last = connection.IndexOf(';', found);
                 DataSource = connection.Substring(found, last - found);
             }
-
-            //found = connection.IndexOf("initial catalog=", StringComparison.CurrentCultureIgnoreCase);
-            //if (found != -1)
-            //{
-            //    found += 16;
-            //    int last = connection.IndexOf(';', found);
-            //    InitialCatalog = connection.Substring(found, last - found);
-            //}
 
             found = connection.IndexOf("AttachDbFilename=", StringComparison.CurrentCultureIgnoreCase);
             if (found != -1)

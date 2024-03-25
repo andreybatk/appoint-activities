@@ -6,12 +6,11 @@ namespace ExcelParser
     /// <summary>
     /// Первый сценарий назначения мероприятий - классическое хозяйство
     /// </summary>
-    class Activitie : IActivitie
+    internal class Activitie : IActivitie
     {
         private ExcelHelper _excelHelper;
         private Dictionary<string, int> _foundColumnsForFilling;
         private int _currentRow;
-
         /// <summary>
         /// Общая полнота
         /// </summary>
@@ -162,8 +161,6 @@ namespace ExcelParser
             int prvb = 0;
             int activitieTwo = 0;
 
-            //проверить что ресулт сохраняет правильный значения после изменений интов
-
             if (_grvoz == 4 || _grvoz == 5) // Выбираем спелые и перестойные насаждения 
             {
 
@@ -177,13 +174,13 @@ namespace ExcelParser
                 else
                 {
                     activitieOne = 80; // выборочные рубки
-                    
+
                     if (_totalpol == 0.5 || _totalpol == 0.4 || _totalpol == 0.3)
                     {
                         activitieOne = 55; // заключительный прием выборочных рубок
                         prvb = 70; // Процент выборки 70%
 
-                        if(_jr2 == 0)
+                        if (_jr2 == 0)
                         {
                             activitieTwo = AppointActivitieTwo();
                         }
@@ -228,7 +225,7 @@ namespace ExcelParser
                     }
                 }
 
-                if(_katl != 80) //защитные
+                if (_katl != 80) //защитные
                 {
                     if (_ks1 >= 8)
                     {
@@ -273,4 +270,3 @@ namespace ExcelParser
         }
     }
 }
-
