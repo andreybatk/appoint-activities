@@ -1,0 +1,66 @@
+﻿<Window x:Class="AppointActivities.WPF.Views.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppointActivities.WPF"
+        xmlns:vm="clr-namespace:AppointActivities.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Forest Appoint Activities" Height="450" Width="800"
+        Background="{DynamicResource backgroundColor}">
+    <Window.Resources>
+    <SolidColorBrush Color="ForestGreen" x:Key="backgroundColor" />
+    <SolidColorBrush Color="DarkGreen" x:Key="buttonColor" />
+    <SolidColorBrush Color="White" x:Key="mainTextColor" />
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Файл" >
+                <MenuItem Header="Настройка подключения" Command="{Binding ChangeConectionCommand}"/>
+            </MenuItem>
+            <!--<MenuItem Header="Информация">
+                <MenuItem Header="Как узнать строку подключения?" Command="{Binding ConnectionInfoCommand}"/>
+            </MenuItem>-->
+        </Menu>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="Назначение мероприятий:" Foreground="{DynamicResource mainTextColor}"/>
+            <Label Content="{Binding CurrentActivitieInfo}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="1 сценарий" Command="{Binding ActivitieCommand}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="2 сценарий" Command="{Binding Activitie2Command}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="3 сценарий" Command="{Binding Activitie3Command}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="4 сценарий" Command="{Binding Activitie4Command}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="5 сценарий" Command="{Binding Activitie5Command}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <Button Content="6 сценарий" Command="{Binding Activitie6Command}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
+            <!--<Button Content="Обновить таблицу" Command="{Binding UpdataDBCommand}"
+                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>-->
+        </StackPanel>
+        <DataGrid Grid.Column="1" Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding DataList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
+                <DataGridTextColumn Header="Мероприятие 1" Binding="{Binding Path=MER1}" />
+                <DataGridTextColumn Header="Мероприятие 2" Binding="{Binding Path=MER2}"  />
+                <DataGridTextColumn Header="Процент выборки" Binding="{Binding Path=PRVB}"  />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

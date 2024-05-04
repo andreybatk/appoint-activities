@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>Img\screenicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="screensaver.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Img\screenicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="160.1000.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppointActivities.DB\AppointActivities.DB.csproj" />
+  </ItemGroup>
+
+</Project>
