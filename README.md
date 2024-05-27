@@ -1,4 +1,4 @@
-# Excel Parser 
+# AppointActivities
 Назначение мероприятий в лесных выделах.
 
 ## Технологии
@@ -7,6 +7,7 @@
 - MSSQL
 
 ## Использование
-- ExcelParser - консольное приложение по назначению мероприятий из Excel файла.
-- WpfApplication - десктопное приложение по назначению мероприятий из файла БД MSSQL приложения AIS POL. 
-- WpfApplication.DB - доступ к данным БД MSSQL.
+- AppointActivities.CLI - консольное приложение по назначению мероприятий из Excel файла.
+- AppointActivities.Models - модели
+- AppointActivities.WPF - десктопное приложение по назначению мероприятий из файла БД MSSQL приложения AIS POL. 
+- AppointActivities.DB - dbfirst подход, доступ к данным БД MSSQL.
