@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows;
 
 namespace AppointActivities.WPF
@@ -18,8 +19,16 @@ namespace AppointActivities.WPF
             if (!createdNew)
             {
                 MessageBox.Show("Программа уже запущена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                Environment.Exit(0);
             }
+            else
+            {
+                this.Exit += OnExit;
+            }
+        }
+        private void OnExit(object sender, ExitEventArgs e)
+        {
+            _syncObject.ReleaseMutex();
         }
     }
 }

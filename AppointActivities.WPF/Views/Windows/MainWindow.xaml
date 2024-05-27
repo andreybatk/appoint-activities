@@ -7,11 +7,64 @@
         xmlns:vm="clr-namespace:AppointActivities.WPF.ViewModels"
         mc:Ignorable="d"
         Title="Forest Appoint Activities" Height="450" Width="800"
-        Background="{DynamicResource backgroundColor}">
+        Background="{DynamicResource BackgroundColor}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip">
     <Window.Resources>
-    <SolidColorBrush Color="ForestGreen" x:Key="backgroundColor" />
-    <SolidColorBrush Color="DarkGreen" x:Key="buttonColor" />
-    <SolidColorBrush Color="White" x:Key="mainTextColor" />
+        <!-- Цветовые ресурсы -->
+        <SolidColorBrush x:Key="BackgroundColor" Color="#2E8B57"/>
+        <SolidColorBrush x:Key="ButtonColor" Color="#006400"/>
+        <SolidColorBrush x:Key="ButtonHoverColor" Color="#98FB98"/>
+        <SolidColorBrush x:Key="MainTextColor" Color="White"/>
+        <SolidColorBrush x:Key="DataGridBackground" Color="#1C1C1C"/>
+        <SolidColorBrush x:Key="DataGridRowBackground" Color="#2F4F4F"/>
+        <SolidColorBrush x:Key="DataGridAlternatingRowBackground" Color="#3CB371"/>
+
+        <!-- Шрифты -->
+        <FontFamily x:Key="HeaderFont">Segoe UI Black</FontFamily>
+
+        <!-- Стиль для кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonColor}" />
+            <Setter Property="Foreground" Value="{DynamicResource MainTextColor}" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="2" Direction="320" Color="#000000" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ButtonHoverColor}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Background" Value="{DynamicResource DataGridBackground}" />
+            <Setter Property="RowBackground" Value="{DynamicResource DataGridRowBackground}" />
+            <Setter Property="AlternatingRowBackground" Value="{DynamicResource DataGridAlternatingRowBackground}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="HorizontalGridLinesBrush" Value="#708090" />
+            <Setter Property="VerticalGridLinesBrush" Value="#708090" />
+        </Style>
     </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -22,44 +75,44 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Height="25" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Файл" >
+            <MenuItem Header="Файл">
                 <MenuItem Header="Настройка подключения" Command="{Binding ChangeConectionCommand}"/>
             </MenuItem>
-            <!--<MenuItem Header="Информация">
-                <MenuItem Header="Как узнать строку подключения?" Command="{Binding ConnectionInfoCommand}"/>
-            </MenuItem>-->
         </Menu>
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <Label Content="Назначение мероприятий:" Foreground="{DynamicResource mainTextColor}"/>
-            <Label Content="{Binding CurrentActivitieInfo}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="1 сценарий" Command="{Binding ActivitieCommand}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="2 сценарий" Command="{Binding Activitie2Command}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="3 сценарий" Command="{Binding Activitie3Command}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="4 сценарий" Command="{Binding Activitie4Command}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="5 сценарий" Command="{Binding Activitie5Command}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <Button Content="6 сценарий" Command="{Binding Activitie6Command}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>
-            <!--<Button Content="Обновить таблицу" Command="{Binding UpdataDBCommand}"
-                    Background="{DynamicResource buttonColor}" Foreground="{DynamicResource mainTextColor}"/>-->
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+            <Label Content="Мероприятия" Foreground="{DynamicResource MainTextColor}" FontFamily="{DynamicResource HeaderFont}" FontSize="16" FontWeight="Bold"/>
+            <Label Content="{Binding CurrentActivitieInfo}" Foreground="{DynamicResource MainTextColor}" FontSize="14"/>
+            <Button Content="1 сценарий" Command="{Binding ActivitieCommand}"/>
+            <Button Content="2 сценарий" Command="{Binding Activitie2Command}"/>
+            <Button Content="3 сценарий" Command="{Binding Activitie3Command}"/>
+            <Button Content="4 сценарий" Command="{Binding Activitie4Command}"/>
+            <Button Content="5 сценарий" Command="{Binding Activitie5Command}"/>
+            <Button Content="6 сценарий" Command="{Binding Activitie6Command}"/>
         </StackPanel>
-        <DataGrid Grid.Column="1" Grid.Row="2"
+        <DataGrid Grid.Column="1" Grid.Row="1"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   ItemsSource="{Binding DataList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
+                <DataGridTextColumn Header="Административный район" Binding="{Binding Path=ADMR}" />
+                <DataGridTextColumn Header="Лесничество" Binding="{Binding Path=LESN}" />
+                <DataGridTextColumn Header="Категория лесов" Binding="{Binding Path=KATL}" />
+                <DataGridTextColumn Header="Квартал" Binding="{Binding Path=KV}" />
+                <DataGridTextColumn Header="Площадь квартала" Binding="{Binding Path=SKV}" />
+                <DataGridTextColumn Header="Номер выдела" Binding="{Binding Path=NVD}" />
+                <DataGridTextColumn Header="Площадь выдела" Binding="{Binding Path=SVD}" />
+                <DataGridTextColumn Header="Преобладающая порода" Binding="{Binding Path=PPOR}" />
+                <DataGridTextColumn Header="Бонитет" Binding="{Binding Path=BON}" />
+                <DataGridTextColumn Header="Тип леса" Binding="{Binding Path=TIPL}" />
+                <DataGridTextColumn Header="Тип лесорастительных условий" Binding="{Binding Path=TLU}" />
                 <DataGridTextColumn Header="Мероприятие 1" Binding="{Binding Path=MER1}" />
-                <DataGridTextColumn Header="Мероприятие 2" Binding="{Binding Path=MER2}"  />
-                <DataGridTextColumn Header="Процент выборки" Binding="{Binding Path=PRVB}"  />
+                <DataGridTextColumn Header="Мероприятие 2" Binding="{Binding Path=MER2}" />
+                <DataGridTextColumn Header="Процент выборки" Binding="{Binding Path=PRVB}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

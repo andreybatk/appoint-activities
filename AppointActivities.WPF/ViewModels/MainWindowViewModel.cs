@@ -31,7 +31,6 @@ namespace AppointActivities.WPF.ViewModels
             Activitie4Command = new RelayCommand(OnActivitie4CommandExecuted);
             Activitie5Command = new RelayCommand(OnActivitie5CommandExecuted);
             Activitie6Command = new RelayCommand(OnActivitie6CommandExecuted);
-
         }
 
         public BindingList<OS_INFO> DataList { get => _data; set => Set(ref _data, value); }
