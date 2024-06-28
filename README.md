@@ -7,7 +7,7 @@
 - MSSQL
 
 ## Использование
-- AppointActivities.CLI - консольное приложение по назначению мероприятий из Excel файла.
-- AppointActivities.Models - модели
-- AppointActivities.WPF - десктопное приложение по назначению мероприятий из файла БД MSSQL приложения AIS POL. 
-- AppointActivities.DB - dbfirst подход, доступ к данным БД MSSQL.
+- AppointActivities.CLI - Console
+- AppointActivities.Models - Models
+- AppointActivities.WPF - Desktop UI
+- AppointActivities.DB - Data Access
